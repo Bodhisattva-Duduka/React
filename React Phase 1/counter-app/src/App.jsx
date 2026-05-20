@@ -1,5 +1,6 @@
 import { useState } from "react"
 import ToggleButton from "./ToggleButton";
+import CharacterCount from "./CharacterCount";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,7 +24,9 @@ function App() {
       <div>
         <ToggleButton />
       </div>
-
+      <div className="flex p-4 justify-center items-center">
+        <CharacterCount/>
+      </div>
     </>
   )
 }
