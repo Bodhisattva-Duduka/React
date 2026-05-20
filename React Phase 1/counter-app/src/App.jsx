@@ -1,4 +1,6 @@
 import { useState } from "react"
+import ToggleButton from "./ToggleButton";
+
 function App() {
   const [count, setCount] = useState(0);
   function increment() {
@@ -6,7 +8,7 @@ function App() {
   }
 
   function decrement() {
-    setCount(prev => prev - 1)
+    return setCount(prev => prev - 1)
   }
 
   return (
@@ -17,6 +19,9 @@ function App() {
           <h1 className="w-fit bg-blue-500 text-4xl p-2">{count}</h1>
           <button className="w-fit bg-purple-500 text-4xl p-2 rounded  " onClick={decrement}>-</button>
         </div>
+      </div>
+      <div>
+        <ToggleButton />
       </div>
 
     </>
