@@ -1,5 +1,5 @@
 import CartItem from './CartItem'
-function Cart({ products, setProduct }) {
+function Cart({ products, setProducts }) {
 
 
 
@@ -16,18 +16,21 @@ function Cart({ products, setProduct }) {
             <div className="w-76 h-120 ">
                 <div className="flex justify-between">
                     <h2>Your Cart</h2>
-                    <h2>
+                    <div>
                         <img className="w-4 h-4 mr-3 bg-purple-600 p-3 rounded-xs" src="../public/assets/shopping-cart.png" />
-                        <h3>{products.length}</h3>
-                    </h2>
+                        <h2>{products.length}</h2>
+                    </div>
                 </div>
                 <div className="flex flex-col">
                     {products.map((item) => (
                         <CartItem
+                            key={item.id}
                             id={item.id}
                             image={item.image}
                             name={item.name}
                             price={item.price}
+                            products={products}
+                            setProducts={setProducts}
                         />
                     ))}
                 </div>
@@ -37,7 +40,7 @@ function Cart({ products, setProduct }) {
                             Total
                         </h3>
                         <h3>
-                            ₹ {()=>totalCost(products)}
+                            ₹ {totalCost(products)}
                         </h3>
                     </div>
                 </div>
