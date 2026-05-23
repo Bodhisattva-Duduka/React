@@ -10,7 +10,10 @@ function Product({ id, name, products, setProducts, price, image }) {
     return (
         <>
             <div className="flex flex-col items-center gap-3 w-50 rounded shadow shadow-gray-300 " >
-                <img src={image} />
+                
+                <div className="h-45">
+                    <img src={image} />
+                </div>
                 <div className="flex flex-col items-start gap-2 ">
                     <h3 className=" text-xl font-medium ">{name}</h3>
                     <h3 className="text-lg font-medium text-purple-900">₹ {price}</h3>
