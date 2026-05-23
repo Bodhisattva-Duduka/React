@@ -18,7 +18,7 @@ function Product({ id, name, products, setProducts, price, image }) {
                     <h3 className=" text-xl font-medium ">{name}</h3>
                     <h3 className="text-lg font-medium text-purple-900">₹ {price}</h3>
                 </div>
-                <button onClick={() => handleClick({ id, name, price, image}, products.inCart)}
+                <button onClick={() => handleClick({ id, name, price, image})}
                     className="hover:bg-purple-700 active:scale-98 h-10 w-45 flex gap-2 items-center mb-3 justify-center rounded bg-purple-900 ">
                     <img src="./assets/shopping-cart.png" className="w-4 h-4" alt="shopping-cart" />
                     <h3 className="text-white">Add to Cart</h3>

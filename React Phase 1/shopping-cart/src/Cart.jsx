@@ -1,12 +1,22 @@
 import CartItem from './CartItem'
 
-function Cart({ products, setProducts }) {
+function Cart({ products, setProducts, onCheckOut }) {
     function totalCost(products) {
         let sum = 0;
         for (const item of products) {
             sum += item.price
         }
         return sum
+    }
+
+    function handleCheckout(){
+        if(products.length != 0){
+            onCheckOut(true)
+        }
+        setProducts([])
+        setTimeout(() => {
+            onCheckOut(false);
+          }, 2000);
     }
 
     return (
@@ -48,7 +58,7 @@ function Cart({ products, setProducts }) {
 
                 <div className="flex">
                     <button className="w-full active:bg-purple-600 px-3 py-1 bg-purple-700 rounded text-white" 
-                            onClick={()=>setProducts([])}>
+                            onClick={handleCheckout}>
                             Checkout
                     </button>
                 </div>
