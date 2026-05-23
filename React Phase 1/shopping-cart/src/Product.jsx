@@ -3,7 +3,7 @@ function Product({ id, name, products, setProducts, price, image }) {
 
     function handleClick({ id, name, price, image }) {
         if(!products.some(item => item.id === id)){
-            setProducts([...products, { id: id, name: name, price: price, image: image }])
+            setProducts(products => [...products, { id: id, name: name, price: price, image: image }])
         }
     }
 
