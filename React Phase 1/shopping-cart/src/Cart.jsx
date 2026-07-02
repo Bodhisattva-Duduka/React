@@ -31,7 +31,7 @@ function Cart({ products, setProducts, onCheckOut }) {
                         <div className="bg-purple-600 p-2 rounded-md">
                             <img className="w-4 h-4" src="../public/assets/shopping-cart.png" />
                         </div>
-                        <h2 className="text-gray-700 font-medium">{}</h2>
+                        <h2 className="text-gray-700 font-medium">{products.length}</h2>
                     </div>
                 </div>
 
