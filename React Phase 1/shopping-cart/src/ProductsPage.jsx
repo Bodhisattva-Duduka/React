@@ -12,6 +12,7 @@ function ProductsPage({products, setProducts}) {
                         id={item.id}
                         products={products}
                         setProducts={setProducts}
+                        quantity={item.quantity}
                         name={item.name}
                         price={item.price}
                         image={item.image}

@@ -4,7 +4,7 @@ function Cart({ products, setProducts, onCheckOut }) {
     function totalCost(products) {
         let sum = 0;
         for (const item of products) {
-            sum += item.price
+            sum += (item.price * item.quantity)
         }
         return sum
     }
@@ -21,7 +21,7 @@ function Cart({ products, setProducts, onCheckOut }) {
 
     return (
         <>
-            <div className="w-80 h-fit bg-white rounded-xl shadow-lg p-4 flex flex-col gap-4">
+            <div className="w-90 h-fit bg-white rounded-xl shadow-lg p-4 flex flex-col gap-4">
 
                 <div className="flex justify-between items-center">
                     <h2 className="text-lg font-semibold text-gray-800">
@@ -31,7 +31,7 @@ function Cart({ products, setProducts, onCheckOut }) {
                         <div className="bg-purple-600 p-2 rounded-md">
                             <img className="w-4 h-4" src="../public/assets/shopping-cart.png" />
                         </div>
-                        <h2 className="text-gray-700 font-medium">{products.length}</h2>
+                        <h2 className="text-gray-700 font-medium">{}</h2>
                     </div>
                 </div>
 
@@ -43,6 +43,7 @@ function Cart({ products, setProducts, onCheckOut }) {
                             image={item.image}
                             name={item.name}
                             price={item.price}
+                            quantity={item.quantity}
                             products={products}
                             setProducts={setProducts}
                         />

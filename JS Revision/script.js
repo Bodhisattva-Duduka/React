@@ -61,7 +61,15 @@ function func(){
 }
 
 
-func()
-func()
-func()
-func()
+
+// func()
+// func()
+// func()
+// func()
+
+
+const add = (a, b) => {
+    return a + b;
+}
+
+console.log(add(23,55))

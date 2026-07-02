@@ -1,7 +1,13 @@
-function CartItem({ id, image, name, price, setProducts }) {
+function CartItem({ id, image, name, price, quantity, products, setProducts }) {
     function handleDelete({ id }) {
-        setProducts(prevProducts => (prevProducts.filter(item => (item.id !== id))))
+        setProducts(prev => 
+            prev
+            .map((item) => item.id === id ? {...item, quantity : item.quantity - 1 } : item)
+            .filter((item) => item.quantity >= 1)
+        )
+        console.log(products)
     }
+
 
     return (
         <>
@@ -13,11 +19,14 @@ function CartItem({ id, image, name, price, setProducts }) {
                     <h3 className="text-sm text-gray-500">₹ {price}</h3>
                 </div>
 
+                <div>
+                    <h1>{quantity}</h1>
+                </div>
+
                 <button
-                    onClick={() => handleDelete({ id })}
-                    className="px-3 py-1 text-sm bg-red-500 hover:bg-red-400 text-white rounded transition-colors"
-                >
-                    Delete
+                    onClick={() => handleDelete({ id, products })}
+                    className="px-3 py-1 text-sm bg-red-500 hover:bg-red-400 text-white rounded transition-colors">
+                    Remove
                 </button>
             </div>
         </>

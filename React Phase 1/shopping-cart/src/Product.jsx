@@ -1,9 +1,13 @@
 
-function Product({ id, name, products, setProducts, price, image }) {
+function Product({ id, name, products, setProducts, price, image, quantity}) {
 
-    function handleClick({ id, name, price, image }) {
+    function handleClick({ id, name, price, image}) {
         if(!products.some(item => item.id === id)){
-            setProducts(products => [...products, { id: id, name: name, price: price, image: image }])
+            setProducts([...products, {id : id, name : name, price: price, image : image, quantity: 1}])
+        } else {
+            setProducts(products.map(product => 
+                id === product.id ? {...product , quantity : product.quantity + 1} : product
+            ))    
         }
     }
 
