@@ -4,14 +4,9 @@ function App() {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
 
-
   function handleChange(e) {
-    if(e.target.value === ""){
-      setData("")
-    }
     setQuery(e.target.value);
   }
-
 
   useEffect(() => {
     if (query != "") {
@@ -25,7 +20,7 @@ function App() {
         } catch (error) {
           console.log(error);
         }
-      }, 500);
+      }, 400);
       return () => {
         clearTimeout(timer);
       };
@@ -46,9 +41,10 @@ function App() {
             id="searh"
           />
         </div>
-        <div className="w-fit h-full border-2 rounded-2xl">
+        <div className="w-fit px-4 py-4 min-h-7 min-w-2xl border-2 rounded-2xl">
           <h1>Result: </h1>
-          {data}
+          {data === "{}" ? "No Results Found" : data}
+          {/* {data} */}
         </div>
       </div>
     </>
