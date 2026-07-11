@@ -24,6 +24,7 @@ function App() {
 
   useEffect(() => {
     if (query != "") {
+      let isCancelled = false
       let timer = setTimeout(async () => {
         try {
           setLoading(true)
@@ -31,13 +32,17 @@ function App() {
             `https://jsonplaceholder.typicode.com/${query}`,
           );
           let data = await res.json();
-          setData(JSON.stringify(data));
+          if(!isCancelled) {
+            setLoading(false)
+            setData(JSON.stringify(data));
+          }
         } catch (error) {
+          setLoading(false)
           console.log(error);
         }
-        setLoading(false)
       }, 400 );
       return () => {
+        isCancelled = true
         clearTimeout(timer);
       };
     }
