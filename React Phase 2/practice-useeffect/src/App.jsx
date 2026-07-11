@@ -12,6 +12,16 @@ function App() {
     setQuery(e.target.value);
   }
 
+  function loadData(){
+    if(loading){
+      return "Loading..."
+    } else if(!loading && data === "{}"){
+      return "No Results Found"
+    } else {
+      return data
+    }
+  }
+
   useEffect(() => {
     if (query != "") {
       let timer = setTimeout(async () => {
@@ -49,7 +59,8 @@ function App() {
         </div>
         <div className="w-fit flex flex-col gap-2 px-4 py-4 min-h-7 min-w-2xl border rounded-2xl">
           <h1>Result: </h1>
-          <h1>{loading ? "Loading...." : data}</h1>
+          <h1>{loadData()}</h1>
+          {/* <h1>{loading ? "Loading...." : data}</h1> */}
           {/* <h1>{data === "{}" ? "No Results Found" : data}</h1> */}
         </div>
       </div>
