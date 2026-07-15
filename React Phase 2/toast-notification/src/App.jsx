@@ -5,7 +5,7 @@ function App() {
   const [toast, setToast] = useState([]);
 
   function handleClick() {
-    setToast([...toast, (toast.length > 0 ? toast[toast.length - 1] : 0) + 1]);
+    setToast([...toast, Date.now()]);
   }
 
   return (
