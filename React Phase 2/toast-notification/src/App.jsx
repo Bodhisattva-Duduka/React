@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-around items-center border">
+      <div className="flex justify-around items-center">
         <div className="flex flex-col w-full justify-center items-center">
           <button
             onClick={handleClick}
@@ -19,10 +19,10 @@ function App() {
             Toast
           </button>
         </div>
-        <div className="flex bg-red-50">
-          <div className="flex flex-col mr-2 mt-2 w-44 h-200 justify-end border">
-            {toast.map((item) =>(
-              <Toast key={item}/>
+        <div className="flex">
+          <div className="flex flex-col mr-2 mt-2 w-44 h-200 justify-end gap-3 ">
+            {toast.map((item) => (
+              <Toast key={item} id={item} toast={toast} setToast={setToast}/>
             ))}
           </div>
         </div>
