@@ -22,7 +22,7 @@ function App() {
         <div className="flex">
           <div className="flex flex-col mr-2 mt-2 w-44 h-200 justify-end gap-3 ">
             {toast.map((item) => (
-              <Toast key={item} id={item} toast={toast} setToast={setToast}/>
+              <Toast key={item} id={item} setToast={setToast}/>
             ))}
           </div>
         </div>
