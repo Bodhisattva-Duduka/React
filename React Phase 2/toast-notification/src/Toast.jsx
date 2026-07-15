@@ -5,9 +5,6 @@ function Toast({ id, setToast }) {
     let timer = setTimeout(() => {
       setToast((prev) => prev.filter((item) => id !== item));
     }, 3000);
-    return () => {
-      clearTimeout(timer);
-    };
   }, []);
 
   return (
