@@ -14,17 +14,17 @@ function useFetch(url){
       try {
         const res = await fetch(url);
         if(!res.ok){
-          setError("Failed to fetch");
+          throw new Error("Failed to fetch");
         }
 
         const info = await res.json();
 
         setData(info);
-        setLoading(false);
-
+        
       } catch (error) {
         setError(error.message)
       }
+      setLoading(false);
 
     }
     getData()
