@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputBox from "./components/InputBox";
 import ResultsBox from "./components/ResultsBox";
+import useDebounce from "./hooks/useDebounce";
+import useFetch from "./hooks/useFetch";
 
 function App() {
-  const[data, setData] = useState([]);
+  const[query, setQuery] = useState("");
+
+  
+  const url = `https://api.github.com/search/users?q=${query}`
+  const debouncedQuery = useDebounce(url);
+  const {data, loading, error} = useFetch(debouncedQuery);
 
 
   return (
     <div className="flex w-full flex-col h-fit items-center">
       <div className="mt-10  ">
-        <InputBox data={data} setData={setData} />
+        <InputBox query={query} setQuery={setQuery} />
       </div>
-      {data}
+      {query}
+      <h1>----------------</h1>
+      {/* {data.items[0].login} */}
       <h3 className="w-120 mt-2 ml-0">
         Recently Viewed:
       </h3>

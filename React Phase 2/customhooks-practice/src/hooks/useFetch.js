@@ -7,27 +7,42 @@ function useFetch(url){
 
   useEffect(()=>{
 
+    setData(null);
+    setError(null);
+    setLoading(true);
+
+    const controller = new AbortController();
     async function getData() {
 
-      setLoading(true);
-
       try {
-        const res = await fetch(url);
+        const res = await fetch(url, {
+          signal :controller.signal
+        });
         if(!res.ok){
           throw new Error("Failed to fetch");
         }
-
         const info = await res.json();
-
-        setData(info);
         
+        if(!controller.signal.aborted){
+          setData(info);
+        }
+
       } catch (error) {
-        setError(error.message)
+        if(!controller.signal.aborted){
+          setError(error.message)
+        }
       }
-      setLoading(false);
+
+      if(!controller.signal.aborted){
+        setLoading(false);
+      }
 
     }
     getData()
+
+    return ()=>{
+      controller.abort();
+    }
 
   },[url]);
 
