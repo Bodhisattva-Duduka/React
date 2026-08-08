@@ -16,8 +16,6 @@ function App() {
   const {data : searchResult, loading : searchLoading, error : searchError} = useFetch(debouncedQuery);
   const {data: recentsResult, loading: recentsLoading, error : recentsError} = useFetch(`https://api.github.com/users/${resultQuery}`);
 
-  console.log("resultQuery:", resultQuery);
-  console.log("recentsResult:", recentsResult);
   useEffect(()=>{
     if (!recentsResult) return;
 
@@ -33,8 +31,8 @@ function App() {
       {searchLoading ? "Loading..." : <SuggestionsBox suggestions={searchResult} setResultQuery={setResultQuery}/>}
       
 
-      <h3 className="w-120 mt-2 ml-0">
-        Recently Viewed:
+      <h3 className="mt-8 mb-3 text-xl">
+        Recently viewed
       </h3>
       <div className="w-120">
         <ResultsBox savedResults={savedResults}/>

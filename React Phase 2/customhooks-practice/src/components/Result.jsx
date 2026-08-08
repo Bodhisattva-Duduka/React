@@ -1,32 +1,42 @@
 function Result({ data }) {
   return (
-    <div className="max-w-120 rounded-2xl border border-blue-600 bg-white p-4">
-      <div className="flex items-center gap-4">
-        <div className="h-20 w-20 shrink-0 rounded-full border-2 border-blue-600 overflow-hidden">
-          <img
-            src={data?.avatar_url}
-            alt={data?.login}
-            className="h-full w-full object-cover"
-          />
-        </div>
+    <div className="flex gap-4 rounded-lg border border-zinc-300 bg-white p-4">
+      
+      <img
+        src={data?.avatar_url}
+        alt={data?.login}
+        className="h-16 w-16 shrink-0 rounded-full object-cover"
+      />
 
-        <div className="flex-1">
-          <h3 className="rounded-lg border border-blue-600 px-4 py-2 text-black">
-            {data?.login || "Username"}
-          </h3>
+      <div className="min-w-0 flex-1">
+        
+        <h3 className="mb-3 text-base font-medium text-zinc-900">
+          {data?.name || "Username"}
+        </h3>
 
-          <div className="mt-3 flex gap-2">
-            <div className="rounded-lg border border-blue-600 px-3 py-2 text-black">
-              Followers: {data?.followers}
-            </div>
-            <div className="rounded-lg border border-blue-600 px-3 py-2 text-black">
-              Following: {data?.following}
-            </div>
-            <div className="rounded-lg border border-blue-600 px-3 py-2 text-black">
-              Repositories: {data?.public_repos}
-            </div>
+        <div className="flex gap-2">
+          <div className="bg-zinc-200 px-3 py-2 text-sm">
+            <span >Followers</span>
+            <p className="mt-1 font-medium text-zinc-900">
+              {data?.followers}
+            </p>
+          </div>
+
+          <div className="bg-zinc-200 px-3 py-2 text-sm">
+            <span >Following</span>
+            <p className="mt-1 font-medium text-zinc-900">
+              {data?.following}
+            </p>
+          </div>
+
+          <div className="bg-zinc-200 px-3 py-2 text-sm">
+            <span >Repositories</span>
+            <p className="mt-1 font-medium text-zinc-900">
+              {data?.public_repos}
+            </p>
           </div>
         </div>
+
       </div>
     </div>
   );

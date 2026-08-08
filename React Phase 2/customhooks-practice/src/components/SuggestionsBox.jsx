@@ -5,7 +5,7 @@ function SuggestionsBox({ suggestions, setResultQuery }) {
   const slicedSuggestions = suggestions?.items.slice(0, 5);
 
   return (
-    <div className="w-120 flex flex-col gap-3 border-2 border-blue-500 rounded-2xl">
+    <div className="w-120 mt-1 overflow-hidden rounded-md border border-zinc-200 bg-white">
       {slicedSuggestions?.map((item) => <Suggestion key={item.id} setResultQuery={setResultQuery} userId={item.login}/>)}
     </div>
   )
