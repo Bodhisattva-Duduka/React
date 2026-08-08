@@ -13,6 +13,7 @@ function App() {
   const url = `https://api.github.com/search/users?q=${query}`
   const debouncedQuery = useDebounce(url);
   const {data : searchResult, loading : searchLoading, error : searchError} = useFetch(debouncedQuery);
+  const {data: recentsResult, loading: recentsLoading, error : recentsError} = useFetch(resultQuery);
 
 
 
@@ -21,13 +22,9 @@ function App() {
       <div className="mt-10  ">
         <InputBox query={query} setQuery={setQuery} />
       </div>
-      {query}
-      <SuggestionsBox suggestions={searchResult} setResultQuery={setResultQuery}/>
+      {searchLoading ? "Loading..." : <SuggestionsBox suggestions={searchResult} setResultQuery={setResultQuery}/>}
+      
 
-      <h1>----------------</h1>
-      {/* {data.items[0].login}
-      {data.items[1].login}
-      {data.items[2].login} */}
       <h3 className="w-120 mt-2 ml-0">
         Recently Viewed:
       </h3>
