@@ -17,13 +17,13 @@ function Result({ data }) {
 
           <div className="mt-3 flex gap-2">
             <div className="rounded-lg border border-blue-600 px-3 py-2 text-black">
-              Followers
+              Followers: {data?.followers}
             </div>
             <div className="rounded-lg border border-blue-600 px-3 py-2 text-black">
-              Following
+              Following: {data?.following}
             </div>
             <div className="rounded-lg border border-blue-600 px-3 py-2 text-black">
-              Repositories
+              Repositories: {data?.public_repos}
             </div>
           </div>
         </div>

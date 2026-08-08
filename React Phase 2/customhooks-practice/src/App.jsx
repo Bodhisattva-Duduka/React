@@ -8,13 +8,21 @@ import SuggestionsBox from "./components/SuggestionsBox";
 function App() {
   const[query, setQuery] = useState("");
   const[resultQuery, setResultQuery] = useState("");
+  const[savedResults, setSavedResults] = useState([]);
 
   
   const url = `https://api.github.com/search/users?q=${query}`
   const debouncedQuery = useDebounce(url);
   const {data : searchResult, loading : searchLoading, error : searchError} = useFetch(debouncedQuery);
-  const {data: recentsResult, loading: recentsLoading, error : recentsError} = useFetch(resultQuery);
+  const {data: recentsResult, loading: recentsLoading, error : recentsError} = useFetch(`https://api.github.com/users/${resultQuery}`);
 
+  console.log("resultQuery:", resultQuery);
+  console.log("recentsResult:", recentsResult);
+  useEffect(()=>{
+    if (!recentsResult) return;
+
+    setSavedResults(prev => [...prev, recentsResult])
+  },[recentsResult])
 
 
   return (
@@ -29,7 +37,7 @@ function App() {
         Recently Viewed:
       </h3>
       <div className="w-120">
-        <ResultsBox />
+        <ResultsBox savedResults={savedResults}/>
       </div>
     </div>
   );
