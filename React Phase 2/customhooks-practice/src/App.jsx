@@ -6,6 +6,7 @@ import useFetch from "./hooks/useFetch";
 
 function App() {
   const[query, setQuery] = useState("");
+  const[results, setResults] = useState([]);
 
   
   const url = `https://api.github.com/search/users?q=${query}`
@@ -19,6 +20,7 @@ function App() {
         <InputBox query={query} setQuery={setQuery} />
       </div>
       {query}
+
       <h1>----------------</h1>
       {/* {data.items[0].login} */}
       <h3 className="w-120 mt-2 ml-0">
