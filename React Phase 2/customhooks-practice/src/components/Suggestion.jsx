@@ -1,9 +1,9 @@
 
-function Suggestion({ userId , setResults }){
+function Suggestion({ userId , setResultQuery }){
 
   return (
-    <div onClick={() => setResults(userId)} className="w-full flex items-center ml-4">
-      <h3>{userId}</h3>
+    <div onClick={() => setResultQuery(userId)} className="w-full flex items-center gap h-8 hover:bg-blue-200 rounded-xl">
+      <h2 className="ml-4 text-xl">{userId}</h2>
     </div>
   )
 }
