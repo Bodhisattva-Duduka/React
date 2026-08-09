@@ -8,7 +8,10 @@ import SuggestionsBox from "./components/SuggestionsBox";
 function App() {
   const[query, setQuery] = useState("");
   const[resultQuery, setResultQuery] = useState("");
-  const[savedResults, setSavedResults] = useState([]);
+  const[savedResults, setSavedResults] = useState(() => {
+  const stored = localStorage.getItem("recents");
+  return stored ? JSON.parse(stored) : [];
+});
 
   
   const url = `https://api.github.com/search/users?q=${query}`
@@ -16,12 +19,19 @@ function App() {
   const {data : searchResult, loading : searchLoading, error : searchError} = useFetch(debouncedQuery);
   const {data: recentsResult, loading: recentsLoading, error : recentsError} = useFetch(`https://api.github.com/users/${resultQuery}`);
 
+
+
   useEffect(()=>{
     if (!recentsResult) return;
 
     setSavedResults(prev => [...prev, recentsResult])
+    
   },[recentsResult])
+  
+  useEffect(()=>{
+    localStorage.setItem("recents", JSON.stringify(savedResults));
 
+  },[savedResults])
 
   return (
     <div className="flex w-full flex-col h-fit items-center">
