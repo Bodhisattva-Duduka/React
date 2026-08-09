@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 function useLocalStorage(key, value){
   
   useEffect(()=>{
-    localStorage.setItem([...[]], JSON.stringify(key))
-  })
 
+    localStorage.setItem(key, JSON.stringify(value));
+  },[key, value]);
 
 }
 

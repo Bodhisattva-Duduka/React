@@ -4,6 +4,7 @@ import ResultsBox from "./components/ResultsBox";
 import useDebounce from "./hooks/useDebounce";
 import useFetch from "./hooks/useFetch";
 import SuggestionsBox from "./components/SuggestionsBox";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const[query, setQuery] = useState("");
@@ -27,11 +28,8 @@ function App() {
     setSavedResults(prev => [...prev, recentsResult])
     
   },[recentsResult])
-  
-  useEffect(()=>{
-    localStorage.setItem("recents", JSON.stringify(savedResults));
 
-  },[savedResults])
+  useLocalStorage("recents", savedResults);
 
   return (
     <div className="flex w-full flex-col h-fit items-center">
