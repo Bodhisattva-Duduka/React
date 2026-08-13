@@ -40,7 +40,7 @@ function Display() {
             <div onClick={() => handleClick(item)} key={item.id} 
             className="w-30 h-25 flex flex-col hover:bg-gray-100 border rounded-2xl items-center justify-center ">
               <h2>{item.name}</h2>
-              <h3>{item.price}</h3>
+              <h3>₹{item.price}</h3>
             </div>
           )
         })}
