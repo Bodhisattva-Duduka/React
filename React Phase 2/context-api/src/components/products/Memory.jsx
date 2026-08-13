@@ -9,12 +9,20 @@ function Memory() {
   function handleClick(newItem) {
     setParts(prev => {
 
-      const exists = prev.some(item => item.id === newItem.id)
+      let categoryExists = false;
+      let ItemID ;
 
-      if(exists){
-        return prev.map(item => {
-          return item.id === newItem.id ? {...item, ...newItem} : item
-          })
+      prev.forEach(item => {
+        if(item.category === newItem.category){
+          categoryExists = true;
+          ItemID = item.id;
+        }
+      });
+
+
+      if(categoryExists){
+        const newArray = prev.filter(item => item.id !== ItemID)
+        return [...newArray, newItem]
       }
 
       return [...prev, newItem];

@@ -6,6 +6,7 @@ import Graphics from './components/products/Graphics.jsx';
 import Memory from './components/products/Memory.jsx';
 import Processor from './components/products/Processor.jsx';
 import Storage from './components/products/Storage.jsx';
+import Cart from './components/Cart.jsx';
 
 function App() {
 
@@ -25,7 +26,9 @@ function App() {
             <Processor/>
             <Storage/>
           </div>
-          <div className="w-2/7 bg-blue-300 h-191 border"></div>
+          <div className="w-2/7 bg-blue-300 h-191 border">
+            <Cart/>
+          </div>
         </div>
       </ConfiguratorContext.Provider>
 
