@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import { createContext } from 'react';
-import './App.css'
 import Header from './components/Header.jsx';
+import { ConfiguratorContext } from './context/ConfiguratorContext'
 
 function App() {
 
-  const ConfiguratorContext = createContext();
   const [parts, setParts] = useState([]);
 
 
