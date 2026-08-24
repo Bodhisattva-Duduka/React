@@ -1,5 +1,11 @@
+import Navbar from "./Navbar";
 function About() {
-  return <h1>About</h1>;
+  return (
+    <>
+      {/* <Navbar /> */}
+      <h1 className="text-3xl bg-red-300">About</h1>
+    </>
+  );
 }
 
 export default About;

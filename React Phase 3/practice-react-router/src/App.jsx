@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Home from './Home';
 import Contact from './Contact';
+import Navbar from './Navbar';
 import About from './About';
 import './App.css'
 
@@ -9,7 +10,10 @@ function App() {
 
   return (
     <div className="h-screen flex items-center justify-center">
+      
+
       <BrowserRouter>
+      <Navbar/>
         <Routes>
 
           <Route path="/" element={<Home/>} />
