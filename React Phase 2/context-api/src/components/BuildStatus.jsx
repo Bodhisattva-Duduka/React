@@ -5,8 +5,8 @@ function BuildStatus() {
   const { parts } = useContext(ConfiguratorContext);
 
   return (
-    <div className="w-80 h-fit p-5 bg-white border border-gray-200 rounded-lg">
-      <h2 className="text-lg font-semibold mb-4">
+    <div className="w-80 h-fit p-5 bg-white border border-gray-200">
+      <h2 className="text-lg mb-4">
         Build Status
       </h2>
 
@@ -14,7 +14,7 @@ function BuildStatus() {
         {parts.map(item => (
           <div
             key={item.id}
-            className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-700"
+            className="px-3 py-2 bg-gray-50 border border-gray-200 text-sm text-gray-700"
           >
             {item.category}
           </div>

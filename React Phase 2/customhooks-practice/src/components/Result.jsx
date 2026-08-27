@@ -1,6 +1,6 @@
 function Result({ data }) {
   return (
-    <div className="flex gap-4 rounded-lg border border-zinc-300 bg-white p-4">
+    <div className="flex gap-4 border border-zinc-300 bg-white p-4">
       
       <img
         src={data?.avatar_url}

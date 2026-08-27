@@ -40,18 +40,18 @@ function Memory() {
               className={`
                       w-30 h-25 p-3
                       flex flex-col items-center justify-center
-                      border rounded-lg cursor-pointer
+                      border cursor-pointer
                       transition
                       ${
                         isSelected
-                          ? "border-gray-500 bg-gray-200"
+                          ? "border-gray-500"
                           : "border-gray-200 bg-white"
                       }
                     `}
             >
               <h2 className="text-sm font-medium text-gray-800">{item.name}</h2>
 
-              <h3 className="mt-2 text-sm text-gray-600">₹{item.price}</h3>
+              <h3 className="mt-2 text-sm ">₹{item.price}</h3>
             </div>
           );
         })}

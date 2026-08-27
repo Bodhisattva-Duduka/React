@@ -33,6 +33,7 @@ function App() {
 
   return (
     <div className="flex w-full flex-col h-fit items-center">
+      <h1 className="text-2xl">GitHub User Finder</h1>
       <div className="mt-10  ">
         <InputBox query={query} setQuery={setQuery} />
       </div>
