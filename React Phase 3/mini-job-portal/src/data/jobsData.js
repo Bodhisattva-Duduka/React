@@ -88,6 +88,95 @@ const jobsData = [
     description:
       "We are seeking a Cloud Engineer to help design, deploy, and maintain secure and scalable cloud infrastructure. You will work with development teams to automate deployments, manage cloud resources, monitor applications, and improve system reliability. The position involves working with containerization, infrastructure as code, networking, security, and cloud monitoring tools. You will also participate in troubleshooting production issues, optimizing infrastructure costs, and developing automation that makes software delivery more reliable and efficient. Strong collaboration and a willingness to learn new cloud technologies are important for this role.",
   },
+  {
+    id: 38472651,
+    title: "Software Development Engineer",
+    company: "Amazon",
+    companyId: 84623715,
+    location: "Bengaluru, India",
+    type: "Full-time",
+    experience: "3+ years",
+    salary: "₹16,00,000 - ₹26,00,000",
+    posted: "1 day ago",
+    skills: ["Java", "Python", "AWS", "Distributed Systems", "SQL"],
+    description:
+      "Join a software engineering team building highly scalable services used by customers across multiple regions. You will participate in system design, implementation, testing, deployment, and operational support. The role involves solving problems around scalability, reliability, performance, and maintainability while working with other engineers to deliver production-ready services. You will also contribute to code reviews, technical documentation, debugging, and improvements to existing architecture.",
+  },
+
+  {
+    id: 62751483,
+    title: "Software Engineer II",
+    company: "Microsoft",
+    companyId: 27461593,
+    location: "Hyderabad, India",
+    type: "Full-time",
+    experience: "3-6 years",
+    salary: "₹18,00,000 - ₹30,00,000",
+    posted: "2 days ago",
+    skills: ["C#", ".NET", "Azure", "REST API", "SQL"],
+    description:
+      "We are looking for a Software Engineer to build reliable services and applications that operate at enterprise scale. You will work with other engineers to design features, implement backend services, investigate production issues, and improve system performance. The role includes participating in design discussions, writing automated tests, reviewing code, and contributing to engineering practices that improve the quality and reliability of the overall product.",
+  },
+
+  {
+    id: 91846327,
+    title: "Machine Learning Engineer",
+    company: "Google",
+    companyId: 58392147,
+    location: "Bengaluru, India",
+    type: "Full-time",
+    experience: "2-5 years",
+    salary: "₹18,00,000 - ₹32,00,000",
+    posted: "3 days ago",
+    skills: ["Python", "TensorFlow", "Machine Learning", "SQL", "GCP"],
+    description:
+      "We are seeking a Machine Learning Engineer to develop and improve machine learning systems used in large-scale products and services. You will work with engineers and data scientists to prepare data, train models, evaluate results, and integrate machine learning solutions into production systems. The position involves experimentation, performance optimization, model monitoring, and software engineering practices required to maintain reliable machine learning applications.",
+  },
+
+  {
+    id: 74521863,
+    title: "Frontend Engineer",
+    company: "Adobe",
+    companyId: 71543829,
+    location: "Noida, India",
+    type: "Full-time",
+    experience: "2-5 years",
+    salary: "₹13,00,000 - ₹22,00,000",
+    posted: "4 days ago",
+    skills: ["React", "TypeScript", "JavaScript", "CSS", "REST API"],
+    description:
+      "We are looking for a Frontend Engineer to build polished and responsive interfaces for modern web applications. You will work closely with designers, product managers, and backend engineers to implement new functionality and improve existing experiences. Responsibilities include building reusable components, integrating APIs, debugging UI issues, improving performance, writing maintainable code, and contributing to frontend development standards across the team.",
+  },
+
+  {
+    id: 53698142,
+    title: "DevOps Engineer",
+    company: "Infosys",
+    companyId: 46289531,
+    location: "Pune, India",
+    type: "Full-time",
+    experience: "3-5 years",
+    salary: "₹12,00,000 - ₹21,00,000",
+    posted: "6 days ago",
+    skills: ["AWS", "Docker", "Kubernetes", "Jenkins", "Terraform"],
+    description:
+      "We are looking for a DevOps Engineer to improve the reliability and automation of software delivery and cloud infrastructure. You will work with development teams to build deployment pipelines, manage infrastructure, monitor applications, and automate repetitive operational tasks. The role includes troubleshooting infrastructure issues, improving deployment processes, supporting cloud environments, and helping teams adopt reliable practices for building and operating production systems.",
+  },
+
+  {
+    id: 86137529,
+    title: "Backend Engineer",
+    company: "Netflix",
+    companyId: 39178426,
+    location: "Mumbai, India",
+    type: "Full-time",
+    experience: "2-5 years",
+    salary: "₹16,00,000 - ₹27,00,000",
+    posted: "1 week ago",
+    skills: ["Java", "Spring Boot", "Microservices", "Kafka", "AWS"],
+    description:
+      "We are seeking a Backend Engineer to design and build services that support high-volume applications. You will work on APIs, backend systems, databases, messaging infrastructure, and distributed services while collaborating with engineers across teams. The role involves designing reliable systems, implementing new features, investigating failures, improving performance, and contributing to engineering practices that help services remain scalable and maintainable as usage grows.",
+  },
 ];
 
 export default jobsData;
