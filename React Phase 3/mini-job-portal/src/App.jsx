@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Companies from "./pages/Companies/Companies";
 import Jobs from "./pages/Jobs/Jobs";
 import Job from "./pages/Jobs/Job";
+import Company from "./pages/Companies/Company";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/jobs" element={<Jobs/>}/>
 
           <Route path="/jobs/:id" element={<Job/>}/>
+          <Route path="/companies/:id" element={<Company/>}/>
         </Routes>
       </BrowserRouter>
     </div>
