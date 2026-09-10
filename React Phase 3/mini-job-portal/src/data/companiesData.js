@@ -89,27 +89,27 @@ const companiesData = [
     "Salesforce is a cloud software company best known for its customer relationship management platform and enterprise cloud applications. The company provides technology used by organizations to manage sales, customer service, marketing, commerce, analytics, automation, and business operations. Salesforce has expanded its platform through cloud services, artificial intelligence capabilities, developer tools, and enterprise integrations. Engineering teams work on large-scale cloud infrastructure and software platforms that support businesses across many industries. Salesforce also has a significant presence in India, where teams contribute across engineering, sales, customer success, operations, and other technology-focused functions.",
 },
 
-{
-  id: 68429157,
-  name: "Atlassian",
-  industry: "Collaboration Software",
-  location: "Bengaluru, India",
-  employees: 12000,
-  founded: 2002,
-  website: "https://www.atlassian.com",
-  description:
-    "Atlassian is a software company that develops collaboration and productivity tools used by engineering teams, businesses, and organizations around the world. Its products include Jira, Confluence, Trello, Jira Service Management, and other tools designed to help teams plan work, manage projects, share knowledge, and improve collaboration. The company focuses heavily on cloud software and modern approaches to teamwork, with engineering teams building products and platforms used by hundreds of thousands of customers. Atlassian's work also increasingly involves artificial intelligence and cloud technologies that help teams automate tasks, organize information, and collaborate more effectively.",
-},
-{
-  id: 41387625,
-  name: "NVIDIA",
-  industry: "AI & Semiconductor Technology",
-  location: "Bengaluru, India",
-  employees: 36000,
-  founded: 1993,
-  website: "https://www.nvidia.com",
-  description:
-    "NVIDIA is a technology company known for its work in graphics processing, accelerated computing, artificial intelligence, high-performance computing, networking, and semiconductor technology. Its graphics processing units and computing platforms are used across industries including gaming, data centers, scientific computing, robotics, autonomous systems, and artificial intelligence. NVIDIA develops both hardware and software platforms, requiring engineering work across areas such as computer architecture, systems programming, distributed computing, machine learning, compilers, networking, and cloud infrastructure. The company has engineering teams in multiple locations around the world and continues to expand its work in AI computing and accelerated systems.",
-},
+  {
+    id: 68429157,
+    name: "Atlassian",
+    industry: "Collaboration Software",
+    location: "Bengaluru, India",
+    employees: 12000,
+    founded: 2002,
+    website: "https://www.atlassian.com",
+    description:
+      "Atlassian is a software company that develops collaboration and productivity tools used by engineering teams, businesses, and organizations around the world. Its products include Jira, Confluence, Trello, Jira Service Management, and other tools designed to help teams plan work, manage projects, share knowledge, and improve collaboration. The company focuses heavily on cloud software and modern approaches to teamwork, with engineering teams building products and platforms used by hundreds of thousands of customers. Atlassian's work also increasingly involves artificial intelligence and cloud technologies that help teams automate tasks, organize information, and collaborate more effectively.",
+  },
+  {
+    id: 41387625,
+    name: "NVIDIA",
+    industry: "AI & Semiconductor Technology",
+    location: "Bengaluru, India",
+    employees: 36000,
+    founded: 1993,
+    website: "https://www.nvidia.com",
+    description:
+      "NVIDIA is a technology company known for its work in graphics processing, accelerated computing, artificial intelligence, high-performance computing, networking, and semiconductor technology. Its graphics processing units and computing platforms are used across industries including gaming, data centers, scientific computing, robotics, autonomous systems, and artificial intelligence. NVIDIA develops both hardware and software platforms, requiring engineering work across areas such as computer architecture, systems programming, distributed computing, machine learning, compilers, networking, and cloud infrastructure. The company has engineering teams in multiple locations around the world and continues to expand its work in AI computing and accelerated systems.",
+  },
 ];
 export default companiesData;
