@@ -1,12 +1,19 @@
-import './App.css'
+import { useState } from "react";
+import { UserContext } from "./context/UserContext";
+import { CartContext } from "./context/CartContext";
+import { Routes } from "react-router";
 
 function App() {
+
+  const [userStatus, setUserStatus] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  
   return (
-    <div className="h-screen flex items-center justify-center bg-blue-500">
-      <h1 className="text-3xl font-bold text-white">
-        Tailwind Working
-      </h1>
-    </div>
+    <UserContext.Provider value={{userStatus, setUserStatus}}>
+      <CartContext.Provider value={{cartItems, setCartItems}}>
+        
+      </CartContext.Provider>
+    </UserContext.Provider>
   );
 }
 
