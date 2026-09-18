@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { UserContext } from "./context/UserContext";
 import { CartContext } from "./context/CartContext";
-import { Routes } from "react-router";
+import { Routes } from "react-router-dom";
+import Navbar  from "./components/Navbar";
 
 function App() {
 
@@ -9,11 +10,13 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   
   return (
-    <UserContext.Provider value={{userStatus, setUserStatus}}>
-      <CartContext.Provider value={{cartItems, setCartItems}}>
+    // <UserContext.Provider value={{userStatus, setUserStatus}}>
+    //   <CartContext.Provider value={{cartItems, setCartItems}}>
         
-      </CartContext.Provider>
-    </UserContext.Provider>
+    //   </CartContext.Provider>
+    // </UserContext.Provider>
+    <Navbar/>
+    
   );
 }
 
