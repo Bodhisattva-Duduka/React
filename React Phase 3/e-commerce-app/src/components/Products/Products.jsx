@@ -38,6 +38,7 @@ function Products() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-4 py-8 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:px-8 xl:grid-cols-4">
         {data.products.map((item) => (
           <ProductBox
+            key={item.id}
             id={item.id}
             title={item.title}
             price={item.price}
