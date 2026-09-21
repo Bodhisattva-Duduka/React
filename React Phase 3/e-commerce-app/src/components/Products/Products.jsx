@@ -9,11 +9,12 @@ function Products() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="flex min-h-[60vh] items-center justify-center px-4">
-          <h2 className="text-lg font-medium text-gray-600">Loading...</h2>
+      <div className="mx-auto flex min-h-[75vh] max-w-7xl items-center justify-center px-5">
+          <div className="flex items-center gap-3 text-sm text-zinc-500">
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-200 border-t-zinc-900" />
+            <span>Loading...</span>
+          </div>
         </div>
-      </div>
     );
   }
 

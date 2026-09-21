@@ -6,6 +6,7 @@ import Navbar  from "./components/Navbar";
 import Products from "./components/Products/Products";
 import ProductItem from "./components/Products/ProductItem";
 import ProductsPage from "./components/Products/ProductsPage";
+import Home from "./components/Home";
 
 function App() {
 
@@ -17,6 +18,8 @@ function App() {
       <CartContext.Provider value={{cartItems, setCartItems}}>
       
       <Routes>
+
+        <Route path="/" element={<Home/>}/>
 
         <Route path="/products" element={<ProductsPage/>}>
 
