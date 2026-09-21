@@ -223,28 +223,28 @@ function ProductItem() {
               </button>
 
               <button
-  onClick={() => {
-    setCartItems((prev) => [
-      ...prev,
-      {
-        id,
-        title: data.title,
-        price: data.price,
-        thumbnail: data.thumbnail,
-        quantity: 1,
-      },
-    ]);
+                onClick={() => {
+                  setCartItems((prev) => [
+                    ...prev,
+                    {
+                      id,
+                      title: data.title,
+                      price: data.price,
+                      thumbnail: data.thumbnail,
+                      quantity: 1,
+                    },
+                  ]);
 
-    setShowToast(true);
+                  setShowToast(true);
 
-    setTimeout(() => {
-      setShowToast(false);
-    }, 2500);
-  }}
-  className="flex h-12 w-full items-center justify-center border border-zinc-300 bg-white px-6 text-sm font-medium text-zinc-950 transition hover:border-zinc-950 hover:bg-zinc-50 active:scale-[0.99]"
->
-  Add to Cart
-</button>
+                  setTimeout(() => {
+                    setShowToast(false);
+                  }, 2500);
+                }}
+                className="flex h-12 w-full items-center justify-center border border-zinc-300 bg-white px-6 text-sm font-medium text-zinc-950 transition hover:border-zinc-950 hover:bg-zinc-50 active:scale-[0.99]"
+              >
+                Add to Cart
+              </button>
             </div>
 
             <div className="mt-8 border-y border-zinc-200">
@@ -325,28 +325,26 @@ function ProductItem() {
         </section>
       </div>
       <div
-  className={`fixed left-1/2 top-16 z-40 -translate-x-1/2 transition-all duration-300 ease-out ${
-    showToast
-      ? "translate-y-0 scale-100 opacity-100"
-      : "-translate-y-6 scale-95 opacity-0 pointer-events-none"
-  }`}
->
-  <div className="flex min-w-[280px] items-center gap-3 border border-zinc-200 bg-white px-4 py-3 shadow-[0_10px_35px_rgba(0,0,0,0.10)]">
-    <div className="flex h-7 w-7 shrink-0 items-center justify-center bg-zinc-950 text-sm font-medium text-white">
-      ✓
-    </div>
+        className={`fixed left-1/2 top-16 z-40 -translate-x-1/2 transition-all duration-300 ease-out ${
+          showToast
+            ? "translate-y-0 scale-100 opacity-100"
+            : "-translate-y-6 scale-95 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex min-w-[280px] items-center gap-3 border border-zinc-200 bg-white px-4 py-3 shadow-[0_10px_35px_rgba(0,0,0,0.10)]">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center bg-zinc-950 text-sm font-medium text-white">
+            ✓
+          </div>
 
-    <div className="min-w-0">
-      <p className="text-sm font-medium text-zinc-950">
-        Added to cart
-      </p>
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-zinc-950">Added to cart</p>
 
-      <p className="max-w-[220px] truncate text-xs text-zinc-500">
-        {data.title}
-      </p>
-    </div>
-  </div>
-</div>
+            <p className="max-w-[220px] truncate text-xs text-zinc-500">
+              {data.title}
+            </p>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

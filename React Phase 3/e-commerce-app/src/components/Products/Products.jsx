@@ -3,6 +3,7 @@ import { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 
 import ProductBox from "./ProductBox";
+import CategoryBar from "../CategoryBar";
 
 function Products() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -66,6 +67,7 @@ function Products() {
 
   return (
     <div className="min-h-screen bg-white">
+      <CategoryBar/>
       <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
         <div className="mb-8 flex items-end justify-between border-b border-zinc-200 pb-6">
           <div>

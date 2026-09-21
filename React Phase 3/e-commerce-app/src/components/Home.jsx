@@ -1,29 +1,39 @@
 import { useEffect, useState } from "react";
-
 import { Link } from "react-router-dom";
-
 import { ArrowUpRight, Star } from "lucide-react";
-
 import Navbar from "./Navbar";
-
 import useFetch from "../hooks/useFetch";
 
 function Home() {
+
   const { data, loading, error } = useFetch(
-    "https://dummyjson.com/products?limit=20",
+    "https://dummyjson.com/products/?limit=20&select=id,title,thumbnail,rating,price,discountPercentage"
   );
 
   const [suggestedProducts, setSuggestedProducts] = useState([]);
 
   useEffect(() => {
-    if (!data?.products?.length) return;
+  if (!data?.products?.length) return;
 
+  const changeProducts = () => {
     const shuffled = [...data.products].sort(
       () => Math.random() - 0.5,
     );
 
     setSuggestedProducts(shuffled.slice(0, 4));
-  }, [data]);
+  };
+
+  // Show a random set immediately
+  changeProducts();
+
+  // Change products every 2 seconds
+  const interval = setInterval(() => {
+    changeProducts();
+  }, 3000);
+
+  // Cleanup when component unmounts
+  return () => clearInterval(interval);
+}, [data]);
 
   if (loading) {
     return (
