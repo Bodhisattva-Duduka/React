@@ -20,7 +20,7 @@ function ProductItem() {
   const [imageNum, setImageNum] = useState(0);
   const [showToast, setShowToast] = useState(false);
 
-  console.log(cartItems);
+  const itemExists = cartItems.some((item) => item.id === id);
 
   if (loading) {
     return (
@@ -226,18 +226,11 @@ function ProductItem() {
 
               <button
                 onClick={() => {
-                  const itemExists = cartItems.some((item) => item.id === id);
+                  if (itemExists) return;
 
-                  if (itemExists) {
-                    setCartItems((prev) =>
-                      prev.map((item) =>
-                        item.id === id
-                          ? { ...item, quantity: item.quantity + 1 }
-                          : item,
-                      ),
-                    );
-                  } else {
-                    setCartItems((prev) => [
+                  setCartItems((prev) => {
+
+                    return [
                       ...prev,
                       {
                         id,
@@ -246,9 +239,9 @@ function ProductItem() {
                         thumbnail: data.thumbnail,
                         quantity: 1,
                       },
-                    ]);
-                  }
-                  
+                    ];
+                  });
+
                   setShowToast(true);
 
                   setTimeout(() => {
@@ -257,7 +250,7 @@ function ProductItem() {
                 }}
                 className="flex h-12 w-full items-center justify-center border border-zinc-300 bg-white px-6 text-sm font-medium text-zinc-950 transition hover:border-zinc-950 hover:bg-zinc-50 active:scale-[0.99]"
               >
-                Add to Cart
+                {itemExists ? "Added to Cart" : "Add to Cart"}
               </button>
             </div>
 
