@@ -1,45 +1,56 @@
 import { Link } from "react-router-dom";
+
 import { ShoppingCart, UserRound } from "lucide-react";
 
 function Navbar() {
   return (
-    <div className="border-b border-gray-200 bg-gray-200">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-5">
+    <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
+        <div className="flex items-center gap-8">
           <Link
             to="/"
-            className="text-xl font-medium text-gray-950 transition-colors hover:text-gray-600"
+            className="text-md font-medium tracking-tight text-zinc-500 transition-colors hover:text-zinc-600"
           >
             Home
           </Link>
 
           <Link
             to="/products"
-            className="text-xl font-medium text-gray-600 transition-colors hover:text-gray-950"
+            className="text-md font-medium text-zinc-500 transition-colors hover:text-zinc-950"
           >
             All Products
           </Link>
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-1">
           <Link
             to="/cart"
-            className="flex items-center gap-2 text-xl font-medium text-gray-600 transition-colors hover:text-gray-950"
+            className="group flex h-10 items-center gap-2 rounded-md px-3 text-md font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
           >
-            <ShoppingCart size={21} strokeWidth={2} />
-            Cart
+            <ShoppingCart
+              size={18}
+              strokeWidth={1.8}
+              className="transition-transform duration-200 group-hover:-translate-y-px"
+            />
+
+            <span className="hidden sm:inline">Cart</span>
           </Link>
 
           <Link
             to="/account"
-            className="flex items-center gap-2 text-xl font-medium text-gray-600 transition-colors hover:text-gray-950"
+            className="group flex h-10 items-center gap-2 rounded-md px-3 text-md font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
           >
-            <UserRound size={21} strokeWidth={2} />
-            Account
+            <UserRound
+              size={18}
+              strokeWidth={1.8}
+              className="transition-transform duration-200 group-hover:-translate-y-px"
+            />
+
+            <span className="hidden sm:inline">Account</span>
           </Link>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 

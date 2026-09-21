@@ -2,11 +2,9 @@ import { useContext, useState } from "react";
 
 import { CartContext } from "../../context/CartContext";
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 import useFetch from "../../hooks/useFetch";
-
-import { Link } from "react-router-dom";
 
 function ProductItem() {
   const { cartItems, setCartItems } = useContext(CartContext);
@@ -14,29 +12,22 @@ function ProductItem() {
   const { id } = useParams();
 
   // const navigate = useNavigate();
-  
+
   const { data, loading, error } = useFetch(
     `https://dummyjson.com/products/${Number(id)}?select=id,title,thumbnail,description,rating,price,thumbnail,discountPercentage,images,reviews`,
   );
 
-  console.log(cartItems)
+  console.log(cartItems);
 
   const [imageNum, setImageNum] = useState(0);
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-white text-slate-900">
-        <div className="mx-auto flex min-h-[70vh] max-w-7xl items-center justify-center px-5">
-          <div className="flex flex-col items-center text-center">
-            <div className="h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-indigo-600" />
-
-            <h2 className="mt-5 text-lg font-semibold text-slate-900">
-              Loading product
-            </h2>
-
-            <p className="mt-1 text-sm text-slate-500">
-              Please wait while we fetch the product details.
-            </p>
+      <main className="min-h-screen bg-white text-zinc-950">
+        <div className="mx-auto flex min-h-[80vh] max-w-6xl items-center justify-center px-6">
+          <div className="flex items-center gap-3 text-sm text-zinc-500">
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-200 border-t-zinc-900" />
+            <span>Loading product...</span>
           </div>
         </div>
       </main>
@@ -45,25 +36,25 @@ function ProductItem() {
 
   if (error) {
     return (
-      <main className="min-h-screen bg-white text-slate-900">
-        <div className="mx-auto flex min-h-[70vh] max-w-7xl items-center justify-center px-5">
-          <div className="max-w-md text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-red-50 text-xl font-bold text-red-500">
-              !
-            </div>
+      <main className="min-h-screen bg-white text-zinc-950">
+        <div className="mx-auto flex min-h-[80vh] max-w-6xl items-center justify-center px-6">
+          <div className="w-full max-w-md border border-zinc-200 bg-zinc-50 p-8 text-center">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-400">
+              Product
+            </p>
 
-            <h2 className="mt-5 text-xl font-bold text-slate-950">
-              Unable to load product
-            </h2>
+            <h1 className="mt-3 text-2xl font-semibold tracking-tight">
+              Something went wrong
+            </h1>
 
-            <p className="mt-2 text-sm leading-6 text-slate-500">
-              Something went wrong while fetching the product details. Please
-              try again later.
+            <p className="mt-2 text-sm leading-6 text-zinc-500">
+              We couldn't load this product right now. Please try again
+              later.
             </p>
 
             <Link
               to="/"
-              className="mt-6 inline-flex h-11 items-center justify-center rounded-lg bg-indigo-600 px-5 text-sm font-semibold text-white transition hover:bg-indigo-700"
+              className="mt-6 inline-flex h-10 items-center justify-center bg-zinc-950 px-5 text-sm font-medium text-white transition hover:bg-zinc-800"
             >
               Back to Home
             </Link>
@@ -76,126 +67,170 @@ function ProductItem() {
   const images = data.images;
 
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className="min-h-screen bg-white text-zinc-950">
       <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
-        <div className="mb-8 flex items-center gap-2 text-sm text-slate-500">
-          <Link to="/" className="transition-colors hover:text-indigo-600">
+        <div className="mb-8 flex items-center gap-2 text-sm text-zinc-400">
+          <Link
+            to="/"
+            className="transition-colors hover:text-zinc-950"
+          >
             Home
           </Link>
 
           <span>/</span>
 
-          <span className="font-medium text-slate-700">Product</span>
+          <span className="text-zinc-600">Product</span>
         </div>
 
-        <section className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-          <div>
-            <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
-              <div className="flex min-h-[420px] items-center justify-center p-6 sm:min-h-[520px] sm:p-10 relative w-full">
+        <section className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div className="min-w-0">
+            <div className="flex gap-4">
+              <div className="hidden w-20 shrink-0 flex-col gap-3 sm:flex">
                 {images.map((src, index) => (
-                  <img
+                  <button
                     key={src}
-                    src={src}
-                    alt={`Slide ${index}`}
-                    className={`h-full max-h-[480px] w-full max-w-[560px] object-contain transition-transform duration-300 absolute ${
+                    onClick={() => setImageNum(index)}
+                    className={`relative aspect-square overflow-hidden border bg-zinc-50 transition ${
                       imageNum === index
-                        ? "opacity-100 pointer-events-auto scale-100"
-                        : "opacity-0 pointer-events-none scale-95"
+                        ? "border-zinc-950 ring-1 ring-zinc-950"
+                        : "border-zinc-200 hover:border-zinc-400"
                     }`}
-                  />
+                    aria-label={`View image ${index + 1}`}
+                  >
+                    <img
+                      src={src}
+                      alt={`Product ${index + 1}`}
+                      className="h-full w-full object-contain p-2"
+                    />
+                  </button>
                 ))}
               </div>
 
-              <button
-                onClick={() =>
-                  setImageNum((prev) =>
-                    prev === 0 ? images.length - 1 : prev - 1,
-                  )
-                }
-                className="absolute left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-xl text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-indigo-600"
-                aria-label="Previous image"
-              >
-                ←
-              </button>
+              <div className="relative min-w-0 flex-1 overflow-hidden border border-zinc-200 bg-zinc-50">
+                <div className="flex aspect-square items-center justify-center p-8 sm:p-12">
+                  {images.map((src, index) => (
+                    <img
+                      key={src}
+                      src={src}
+                      alt={`${data.title} ${index + 1}`}
+                      className={`absolute inset-0 h-full w-full object-contain p-10 transition-all duration-300 sm:p-14 ${
+                        imageNum === index
+                          ? "scale-100 opacity-100"
+                          : "pointer-events-none scale-[0.97] opacity-0"
+                      }`}
+                    />
+                  ))}
+                </div>
 
-              <button
-                onClick={() =>
-                  setImageNum((prev) => (prev + 1) % images.length)
-                }
-                className="absolute right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-xl text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-indigo-600"
-                aria-label="Next image"
-              >
-                →
-              </button>
+                <div className="absolute bottom-4 left-4 border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-600">
+                  {String(imageNum + 1).padStart(2, "0")} /{" "}
+                  {String(images.length).padStart(2, "0")}
+                </div>
+
+                <div className="absolute bottom-4 right-4 flex">
+                  <button
+                    onClick={() =>
+                      setImageNum((prev) =>
+                        prev === 0 ? images.length - 1 : prev - 1,
+                      )
+                    }
+                    className="flex h-10 w-10 items-center justify-center border border-zinc-200 bg-white text-zinc-700 transition hover:bg-zinc-950 hover:text-white"
+                    aria-label="Previous image"
+                  >
+                    ←
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      setImageNum(
+                        (prev) => (prev + 1) % images.length,
+                      )
+                    }
+                    className="-ml-px flex h-10 w-10 items-center justify-center border border-zinc-200 bg-white text-zinc-700 transition hover:bg-zinc-950 hover:text-white"
+                    aria-label="Next image"
+                  >
+                    →
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-4 flex items-center justify-center gap-2">
-              {images.map((_, index) => (
+            <div className="mt-4 flex gap-2 overflow-x-auto pb-1 sm:hidden">
+              {images.map((src, index) => (
                 <button
-                  key={index}
+                  key={src}
                   onClick={() => setImageNum(index)}
-                  className={`h-1.5 rounded-full transition-all ${
+                  className={`h-16 w-16 shrink-0 overflow-hidden border bg-zinc-50 ${
                     imageNum === index
-                      ? "w-7 bg-indigo-600"
-                      : "w-2 bg-slate-300 hover:bg-slate-400"
+                      ? "border-zinc-950 ring-1 ring-zinc-950"
+                      : "border-zinc-200"
                   }`}
                   aria-label={`View image ${index + 1}`}
-                />
+                >
+                  <img
+                    src={src}
+                    alt={`Product ${index + 1}`}
+                    className="h-full w-full object-contain p-1"
+                  />
+                </button>
               ))}
             </div>
           </div>
 
-          <div className="pt-1">
-            <div className="mb-3 flex items-center gap-3">
-              <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-600">
-                Product
-              </span>
-
-              <div className="flex items-center gap-1 text-sm text-slate-600">
+          <div className="lg:sticky lg:top-8 lg:self-start">
+            <div className="flex items-center gap-3 text-sm">
+              <div className="flex items-center gap-1">
                 <span className="text-amber-500">★</span>
-                <span className="font-semibold text-slate-800">
+                <span className="font-medium text-zinc-900">
                   {data.rating}
                 </span>
-                <span className="text-slate-400">
-                  ({data.reviews.length} reviews)
-                </span>
               </div>
+
+              <span className="h-1 w-1 rounded-full bg-zinc-300" />
+
+              <span className="text-zinc-500">
+                {data.reviews.length} reviews
+              </span>
             </div>
 
-            <h1 className="max-w-2xl text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            <h1 className="mt-4 max-w-xl text-3xl font-semibold leading-tight tracking-[-0.03em] text-zinc-950 sm:text-4xl">
               {data.title}
             </h1>
 
-            <div className="mt-6 flex flex-wrap items-end gap-x-4 gap-y-2">
-              <span className="text-3xl font-bold tracking-tight text-slate-950">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <span className="text-3xl font-semibold tracking-tight">
                 ${data.price}
               </span>
 
-              <span className="text-base text-slate-400 line-through">
-                ${(data.price / (1 - data.discountPercentage / 100)).toFixed(2)}
+              <span className="text-base text-zinc-400 line-through">
+                $
+                {(
+                  data.price /
+                  (1 - data.discountPercentage / 100)
+                ).toFixed(2)}
               </span>
 
-              <span className="rounded-md bg-emerald-50 px-2 py-1 text-xs font-bold text-emerald-600">
-                {data.discountPercentage}% OFF
+              <span className="text-sm font-medium text-emerald-600">
+                Save {data.discountPercentage}%
               </span>
             </div>
 
-            <div className="my-8 h-px bg-slate-200" />
+            <div className="my-8 h-px bg-zinc-200" />
 
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500">
-                Description
+              <h2 className="text-sm font-medium text-zinc-950">
+                About this product
               </h2>
 
-              <p className="mt-3 max-w-2xl text-[15px] leading-7 text-slate-600">
+              <p className="mt-3 max-w-xl text-[15px] leading-7 text-zinc-500">
                 {data.description}
               </p>
             </div>
 
-            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="mt-8 space-y-3">
               <button
                 // onClick={() => navigate(`/checkout/${id}`)}
-                className="h-12 rounded-lg bg-indigo-600 px-6 text-sm font-semibold text-white transition hover:bg-indigo-700 active:scale-[0.99]"
+                className="flex h-12 w-full items-center justify-center bg-zinc-950 px-6 text-sm font-medium text-white transition hover:bg-zinc-800 active:scale-[0.99]"
               >
                 Buy Now
               </button>
@@ -203,12 +238,17 @@ function ProductItem() {
               <button
                 onClick={() => {
                   setCartItems((prev) => {
-                    const itemExists = prev.find((item) => item.id === id);
+                    const itemExists = prev.find(
+                      (item) => item.id === id,
+                    );
 
                     if (itemExists) {
                       return prev.map((item) =>
                         item.id === id
-                          ? { ...item, quantity: item.quantity + 1 }
+                          ? {
+                              ...item,
+                              quantity: item.quantity + 1,
+                            }
                           : item,
                       );
                     }
@@ -225,74 +265,89 @@ function ProductItem() {
                     ];
                   });
                 }}
-                className="h-12 rounded-lg border border-slate-300 bg-white px-6 text-sm font-semibold text-slate-900 transition hover:border-slate-400 hover:bg-slate-50 active:scale-[0.99]"
+                className="flex h-12 w-full items-center justify-center border border-zinc-300 bg-white px-6 text-sm font-medium text-zinc-950 transition hover:border-zinc-950 hover:bg-zinc-50 active:scale-[0.99]"
               >
                 Add to Cart
               </button>
             </div>
 
-            <div className="mt-8 grid grid-cols-2 gap-4 border-y border-slate-200 py-5">
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+            <div className="mt-8 border-y border-zinc-200">
+              <div className="flex items-center justify-between py-4">
+                <span className="text-sm text-zinc-500">
                   Rating
-                </p>
+                </span>
 
-                <p className="mt-1 font-semibold text-slate-800">
+                <span className="text-sm font-medium text-zinc-950">
                   {data.rating} / 5
-                </p>
+                </span>
               </div>
 
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+              <div className="flex items-center justify-between border-t border-zinc-200 py-4">
+                <span className="text-sm text-zinc-500">
                   Reviews
-                </p>
+                </span>
 
-                <p className="mt-1 font-semibold text-slate-800">
+                <span className="text-sm font-medium text-zinc-950">
                   {data.reviews.length}
-                </p>
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between border-t border-zinc-200 py-4">
+                <span className="text-sm text-zinc-500">
+                  Discount
+                </span>
+
+                <span className="text-sm font-medium text-emerald-600">
+                  {data.discountPercentage}% off
+                </span>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mt-16 border-t border-slate-200 pt-10">
-          <div className="flex items-end justify-between gap-4">
+        <section className="mt-20 border-t border-zinc-200 pt-12">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+              <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-400">
                 Customer feedback
               </p>
 
-              <h2 className="mt-1 text-2xl font-bold tracking-tight text-slate-950">
+              <h2 className="mt-2 text-2xl font-semibold tracking-tight text-zinc-950">
                 Reviews
               </h2>
             </div>
 
-            <div className="text-sm text-slate-500">
+            <p className="text-sm text-zinc-500">
               {data.reviews.length} reviews
-            </div>
+            </p>
           </div>
 
-          <div className="mt-6 divide-y divide-slate-200 border-y border-slate-200">
+          <div className="mt-8 border-y border-zinc-200">
             {data.reviews.map((item, index) => (
-              <article key={index} className="py-6">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="max-w-3xl">
-                    <div className="mb-2 flex items-center gap-1 text-sm">
+              <article
+                key={index}
+                className="border-b border-zinc-200 py-7 last:border-b-0"
+              >
+                <div className="grid gap-4 sm:grid-cols-[180px_1fr] sm:gap-8">
+                  <div>
+                    <p className="text-sm font-medium text-zinc-950">
+                      {item.reviewerName}
+                    </p>
+
+                    <div className="mt-2 flex items-center gap-1 text-sm">
                       <span className="text-amber-500">★</span>
 
-                      <span className="font-semibold text-slate-800">
+                      <span className="font-medium text-zinc-700">
                         {item.rating}
                       </span>
                     </div>
-
-                    <h3 className="text-base font-semibold text-slate-900">
-                      {item.comment}
-                    </h3>
                   </div>
 
-                  <p className="shrink-0 text-sm font-medium text-slate-500">
-                    {item.reviewerName}
-                  </p>
+                  <div>
+                    <p className="max-w-3xl text-[15px] leading-7 text-zinc-600">
+                      {item.comment}
+                    </p>
+                  </div>
                 </div>
               </article>
             ))}
