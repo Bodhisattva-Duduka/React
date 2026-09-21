@@ -17,8 +17,6 @@ function ProductItem() {
     `https://dummyjson.com/products/${Number(id)}?select=id,title,thumbnail,description,rating,price,thumbnail,discountPercentage,images,reviews`,
   );
 
-  console.log(cartItems);
-
   const [imageNum, setImageNum] = useState(0);
   const [showToast, setShowToast] = useState(false);
 

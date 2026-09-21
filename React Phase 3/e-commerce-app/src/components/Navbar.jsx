@@ -6,6 +6,8 @@ import { useContext } from "react";
 
 import { CartContext } from "../context/CartContext";
 
+import logo from "../assets/logo.png";
+
 function Navbar() {
   const { cartItems } = useContext(CartContext);
 
@@ -16,24 +18,38 @@ function Navbar() {
         <div className="flex items-center gap-8">
           <Link
             to="/"
-            className="text-md font-medium tracking-tight text-zinc-500 transition-colors hover:text-zinc-950"
+            className="flex items-center shrink-0"
+            aria-label="Cove Home"
           >
-            Home
+            <img
+              src={logo}
+              alt="Cove"
+              className="h-20 w-auto object-contain"
+            />
           </Link>
 
-          <Link
-            to="/products"
-            className="text-md font-medium text-zinc-500 transition-colors hover:text-zinc-950"
-          >
-            All Products
-          </Link>
+          <nav className="flex items-center gap-7">
+            <Link
+              to="/"
+              className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
+            >
+              Home
+            </Link>
+
+            <Link
+              to="/products"
+              className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
+            >
+              All Products
+            </Link>
+          </nav>
         </div>
 
         {/* Right */}
         <div className="flex items-center gap-1">
           <Link
             to="/cart"
-            className="group flex h-10 items-center gap-2 rounded-md px-3 text-md font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
+            className="group flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
           >
             <span className="relative flex items-center">
               <ShoppingCart
@@ -54,7 +70,7 @@ function Navbar() {
 
           <Link
             to="/account"
-            className="group flex h-10 items-center gap-2 rounded-md px-3 text-md font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
+            className="group flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
           >
             <UserRound
               size={18}
