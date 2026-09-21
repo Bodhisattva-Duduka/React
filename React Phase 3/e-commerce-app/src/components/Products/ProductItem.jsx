@@ -20,6 +20,8 @@ function ProductItem() {
   const [imageNum, setImageNum] = useState(0);
   const [showToast, setShowToast] = useState(false);
 
+  console.log(cartItems);
+
   if (loading) {
     return (
       <main className="min-h-screen bg-white text-zinc-950">
@@ -224,17 +226,29 @@ function ProductItem() {
 
               <button
                 onClick={() => {
-                  setCartItems((prev) => [
-                    ...prev,
-                    {
-                      id,
-                      title: data.title,
-                      price: data.price,
-                      thumbnail: data.thumbnail,
-                      quantity: 1,
-                    },
-                  ]);
+                  const itemExists = cartItems.some((item) => item.id === id);
 
+                  if (itemExists) {
+                    setCartItems((prev) =>
+                      prev.map((item) =>
+                        item.id === id
+                          ? { ...item, quantity: item.quantity + 1 }
+                          : item,
+                      ),
+                    );
+                  } else {
+                    setCartItems((prev) => [
+                      ...prev,
+                      {
+                        id,
+                        title: data.title,
+                        price: data.price,
+                        thumbnail: data.thumbnail,
+                        quantity: 1,
+                      },
+                    ]);
+                  }
+                  
                   setShowToast(true);
 
                   setTimeout(() => {

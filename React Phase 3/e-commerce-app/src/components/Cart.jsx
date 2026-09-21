@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 import { UserContext } from "../context/UserContext";
+import Navbar from "./Navbar";
 
 function Cart() {
   
@@ -8,7 +9,18 @@ function Cart() {
 
   return (
     <div>
-      
+      <Navbar/>
+      <div>
+        <div>
+          {cartItems.map((item) => (
+            <div>
+              <div>
+                
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

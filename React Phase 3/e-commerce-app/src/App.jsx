@@ -20,8 +20,7 @@ function App() {
 
   return (
     <UserContext.Provider value={{ userStatus, setUserStatus }}>
-      <CartContext.Provider value={{ cartItems, setCartItems }}>
-        <CartContext.Provider value={{ userDetails, setUserDetails }}>
+      <CartContext.Provider value={{ cartItems, setCartItems , userDetails, setUserDetails}}>
 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -34,8 +33,7 @@ function App() {
 
             <Route path="/categories/:category_name" element={<Categories />} />
           </Routes>
-          
-        </CartContext.Provider>
+
       </CartContext.Provider>
     </UserContext.Provider>
   );
