@@ -23,15 +23,12 @@ function Home() {
     setSuggestedProducts(shuffled.slice(0, 4));
   };
 
-  // Show a random set immediately
   changeProducts();
 
-  // Change products every 2 seconds
   const interval = setInterval(() => {
     changeProducts();
   }, 3000);
 
-  // Cleanup when component unmounts
   return () => clearInterval(interval);
 }, [data]);
 
@@ -86,7 +83,6 @@ function Home() {
       <Navbar />
 
       <div className="mx-auto max-w-7xl px-5 pb-12 pt-8 sm:px-8 lg:px-10 lg:pb-16 lg:pt-10">
-        {/* Intro */}
         <section className="flex flex-col gap-5 border-b border-zinc-200 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-lg">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-400">
@@ -116,7 +112,6 @@ function Home() {
           </Link>
         </section>
 
-        {/* Products */}
         <section className="pt-8">
           <div className="grid gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
             {suggestedProducts.map((product) => (
@@ -125,7 +120,6 @@ function Home() {
                 to={`/products/${product.id}`}
                 className="group min-w-0"
               >
-                {/* Image */}
                 <div className="relative aspect-[1.08/1] overflow-hidden border border-zinc-200 bg-zinc-50">
                   <img
                     src={product.thumbnail}
@@ -147,7 +141,6 @@ function Home() {
                   </span>
                 </div>
 
-                {/* Info */}
                 <div className="pt-4">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -191,7 +184,6 @@ function Home() {
           </div>
         </section>
 
-        {/* Bottom CTA */}
         <section className="mt-12 border-t border-zinc-200 pt-6">
           <div className="flex items-center justify-between gap-4">
             <p className="text-sm text-zinc-400">

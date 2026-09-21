@@ -2,11 +2,11 @@ import { useState } from "react";
 import { UserContext } from "./context/UserContext";
 import { CartContext } from "./context/CartContext";
 import { Routes , Route} from "react-router-dom";
-import Navbar  from "./components/Navbar";
 import Products from "./components/Products/Products";
 import ProductItem from "./components/Products/ProductItem";
 import ProductsPage from "./components/Products/ProductsPage";
 import Home from "./components/Home";
+import Categories from "./components/Categories";
 
 function App() {
 
@@ -28,6 +28,8 @@ function App() {
           <Route path=":id" element={<ProductItem/>}/>
 
         </Route>
+
+        <Route path="/categories/:category_name" element={<Categories/>}/>
 
 
       </Routes>
