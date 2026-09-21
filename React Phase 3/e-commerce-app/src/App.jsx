@@ -4,6 +4,8 @@ import { CartContext } from "./context/CartContext";
 import { Routes , Route} from "react-router-dom";
 import Navbar  from "./components/Navbar";
 import Products from "./components/Products/Products";
+import ProductItem from "./components/Products/ProductItem";
+import ProductsPage from "./components/Products/ProductsPage";
 
 function App() {
 
@@ -15,7 +17,15 @@ function App() {
       <CartContext.Provider value={{cartItems, setCartItems}}>
       
       <Routes>
-        <Route path="/products" element={<Products/>} />
+
+        <Route path="/products" element={<ProductsPage/>}>
+
+          <Route index element={<Products/>} />
+
+          <Route path=":id" element={<ProductItem/>}/>
+
+        </Route>
+
 
       </Routes>
       </CartContext.Provider>
