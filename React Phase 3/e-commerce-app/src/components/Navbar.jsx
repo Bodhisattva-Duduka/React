@@ -7,9 +7,11 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 import logo from "../assets/logo.png";
+import { UserContext } from "../context/UserContext";
 
 function Navbar() {
   const { cartItems } = useContext(CartContext);
+  const { userStatus, userDetails } = useContext(UserContext);
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur">
@@ -67,7 +69,7 @@ function Navbar() {
           </Link>
 
           <Link
-            to="/account"
+            to={userStatus ? "/account" : "/login"}
             className="group flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
           >
             <UserRound
@@ -76,7 +78,9 @@ function Navbar() {
               className="transition-transform duration-200 group-hover:-translate-y-px"
             />
 
-            <span className="hidden sm:inline">Account</span>
+            <span className="hidden sm:inline">
+              {userStatus ? userDetails.name : "Login"}
+            </span>
           </Link>
         </div>
       </div>

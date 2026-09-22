@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../context/UserContext";
+import logo from '../assets/logo.png'
 
 function Login() {
   const { userDetails, setUserDetails } = useContext(UserContext);
@@ -111,16 +112,13 @@ function Login() {
           <Link
             to="/"
             className="inline-flex w-fit"
+            aria-label="Cove Home"
           >
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center bg-zinc-950 text-sm font-semibold text-white">
-                C
-              </div>
-
-              <span className="text-lg font-semibold tracking-tight text-zinc-950">
-                cove
-              </span>
-            </div>
+            <img
+              src={logo}
+              alt="Cove"
+              className="h-30 w-auto object-contain"
+            />
           </Link>
 
           <div className="max-w-md">
@@ -166,11 +164,10 @@ function Login() {
                 <button
                   type="button"
                   onClick={switchToSignup}
-                  className={`relative px-1 pb-4 text-sm font-medium transition-colors ${
-                    !showLogin
+                  className={`relative px-1 pb-4 text-sm font-medium transition-colors ${!showLogin
                       ? "text-zinc-950"
                       : "text-zinc-400 hover:text-zinc-700"
-                  }`}
+                    }`}
                 >
                   Sign up
 
@@ -182,11 +179,10 @@ function Login() {
                 <button
                   type="button"
                   onClick={switchToLogin}
-                  className={`relative ml-7 px-1 pb-4 text-sm font-medium transition-colors ${
-                    showLogin
+                  className={`relative ml-7 px-1 pb-4 text-sm font-medium transition-colors ${showLogin
                       ? "text-zinc-950"
                       : "text-zinc-400 hover:text-zinc-700"
-                  }`}
+                    }`}
                 >
                   Login
 
