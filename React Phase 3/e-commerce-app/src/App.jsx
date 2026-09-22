@@ -7,6 +7,7 @@ import ProductItem from "./components/Products/ProductItem";
 import ProductsPage from "./components/Products/ProductsPage";
 import Home from "./components/Home";
 import Categories from "./components/Categories";
+import Cart from './components/Cart';
 
 function App() {
   const [userStatus, setUserStatus] = useState(false);
@@ -32,6 +33,9 @@ function App() {
             </Route>
 
             <Route path="/categories/:category_name" element={<Categories />} />
+
+            <Route path="/cart" element={<Cart/>} />
+
           </Routes>
 
       </CartContext.Provider>
