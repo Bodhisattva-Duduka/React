@@ -8,6 +8,7 @@ import ProductsPage from "./components/Products/ProductsPage";
 import Home from "./components/Home";
 import Categories from "./components/Categories";
 import Cart from './components/Cart';
+import Login from "./components/Login";
 
 function App() {
   const [userStatus, setUserStatus] = useState(false);
@@ -20,7 +21,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   return (
-    <UserContext.Provider value={{ userStatus, setUserStatus }}>
+    <UserContext.Provider value={{ userStatus, setUserStatus , userDetails, setUserDetails}}>
       <CartContext.Provider value={{ cartItems, setCartItems , userDetails, setUserDetails}}>
 
           <Routes>
@@ -35,6 +36,8 @@ function App() {
             <Route path="/categories/:category_name" element={<Categories />} />
 
             <Route path="/cart" element={<Cart/>} />
+
+            <Route path="/login" element={<Login/>} />
 
           </Routes>
 
