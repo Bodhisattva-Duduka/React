@@ -1,18 +1,71 @@
-import AccountDetails from "./AccountDetails"
-import OrderDetails from "./OrderDetails"
-import { Link } from "react-router-dom"
-import { Outlet } from "react-router-dom"
+import { Link, Outlet, useLocation } from "react-router-dom";
+import Navbar from "../Navbar";
 
 function Account() {
+  const location = useLocation();
+
+  const isEditPage = location.pathname === "/account/edit";
+  const isOrdersPage = location.pathname === "/account/orders";
+
   return (
-    <div>
-        <div>
-            <Link to="/account/edit">Edit</Link>
-            <Link to="/account/orders">Your Orders</Link>
+    <main className="min-h-screen bg-white text-zinc-950">
+      <Navbar/>
+      <div className="mx-auto max-w-5xl px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
+        {/* Header */}
+        <div className="border-b border-zinc-200 pb-7">
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-zinc-400">
+            Account
+          </p>
+
+          <h1 className="mt-2 text-3xl font-semibold tracking-[-0.03em] text-zinc-950">
+            Your account
+          </h1>
+
+          <p className="mt-2 max-w-lg text-sm leading-6 text-zinc-500">
+            Manage your profile details and keep track of your orders.
+          </p>
         </div>
-        <Outlet/>
-    </div>
-  )
+
+        {/* Navigation */}
+        <nav className="flex gap-6 border-b border-zinc-200">
+          <Link
+            to="/account/edit"
+            className={`relative py-4 text-sm font-medium transition-colors ${
+              isEditPage
+                ? "text-zinc-950"
+                : "text-zinc-400 hover:text-zinc-700"
+            }`}
+          >
+            Profile
+
+            {isEditPage && (
+              <span className="absolute bottom-0 left-0 h-px w-full bg-zinc-950" />
+            )}
+          </Link>
+
+          <Link
+            to="/account/orders"
+            className={`relative py-4 text-sm font-medium transition-colors ${
+              isOrdersPage
+                ? "text-zinc-950"
+                : "text-zinc-400 hover:text-zinc-700"
+            }`}
+          >
+            Your Orders
+
+            {isOrdersPage && (
+              <span className="absolute bottom-0 left-0 h-px w-full bg-zinc-950" />
+            )}
+          </Link>
+        </nav>
+
+        {/* Nested route */}
+        <div className="pt-8">
+          <Outlet />
+        </div>
+      </div>
+    </main>
+  );
 }
 
-export default Account
+export default Account;
