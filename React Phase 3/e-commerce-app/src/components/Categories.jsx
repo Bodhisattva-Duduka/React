@@ -1,27 +1,54 @@
+import { useState } from "react";
+
 import { useParams } from "react-router-dom";
 
 import useFetch from "../hooks/useFetch";
+
 import ProductBox from "./Products/ProductBox";
+
 import CategoryBar from "./CategoryBar";
+
 import Navbar from "./Navbar";
+
+import useDebounce from "../hooks/useDebounce";
 
 function Categories() {
   const { category_name } = useParams();
-  console.log(category_name)
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const debouncedValue = useDebounce(searchQuery);
 
   const { data, loading, error } = useFetch(
-    `https://dummyjson.com/products/category/${category_name}`
+    `https://dummyjson.com/products/category/${category_name}`,
   );
 
+  const search = debouncedValue.trim().toLowerCase();
 
+  const filteredProducts = data?.products.filter((item) =>
+    item.title.toLowerCase().includes(search),
+  );
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar/>
+      <Navbar />
+
       <CategoryBar />
 
+      {/* Search */}
+      <div className="mx-auto flex w-full max-w-7xl justify-center px-5 pt-6 sm:px-8 lg:px-10">
+        <input
+          onChange={(e) => setSearchQuery(e.target.value)}
+          value={searchQuery}
+          placeholder="Search this category..."
+          type="text"
+          name="search"
+          id="category-search"
+          className="h-11 w-full max-w-280 border border-zinc-300 bg-white px-3 text-sm text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-zinc-950 focus:ring-1 focus:ring-zinc-950"
+        />
+      </div>
+
       <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
-        
         {/* Header */}
         <div className="mb-8 flex items-end justify-between border-b border-zinc-200 pb-6">
           <div>
@@ -35,7 +62,9 @@ function Categories() {
           </div>
 
           <p className="text-sm text-zinc-400">
-            {data?.total} products
+            {search
+              ? `${filteredProducts?.length ?? 0} results`
+              : `${data?.total ?? 0} products`}
           </p>
         </div>
 
@@ -44,6 +73,7 @@ function Categories() {
           <div className="flex min-h-[50vh] items-center justify-center">
             <div className="flex items-center gap-3 text-sm text-zinc-500">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-200 border-t-zinc-900" />
+
               <span>Loading...</span>
             </div>
           </div>
@@ -69,9 +99,9 @@ function Categories() {
         )}
 
         {/* Products */}
-        {data && (
+        {!loading && !error && filteredProducts?.length > 0 && (
           <div className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {data.products.map((item) => (
+            {filteredProducts.map((item) => (
               <ProductBox
                 key={item.id}
                 id={item.id}
@@ -83,6 +113,23 @@ function Categories() {
             ))}
           </div>
         )}
+
+        {/* No results */}
+        {!loading &&
+          !error &&
+          filteredProducts?.length === 0 && (
+            <div className="flex min-h-[40vh] items-center justify-center border-y border-zinc-200">
+              <div className="text-center">
+                <h2 className="text-lg font-semibold text-zinc-950">
+                  No products found
+                </h2>
+
+                <p className="mt-2 text-sm text-zinc-500">
+                  Try a different search term.
+                </p>
+              </div>
+            </div>
+          )}
       </div>
     </div>
   );

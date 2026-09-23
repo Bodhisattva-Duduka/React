@@ -41,7 +41,7 @@ function Navbar() {
               to="/products"
               className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
             >
-              Products
+              All Products
             </Link>
           </nav>
         </div>
