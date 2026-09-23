@@ -6,6 +6,7 @@ import { UserContext } from "../context/UserContext";
 
 import { CartContext } from "../context/CartContext";
 import logo from '../assets/logo.png'
+import banner from '../assets/banner.png'
 
 function Login() {
   const { userDetails, setUserDetails } = useContext(UserContext);
@@ -138,6 +139,12 @@ function Login() {
               className="h-30 w-auto object-contain"
             />
           </Link>
+
+          <img
+            src={banner}
+            alt="banner"
+            className="h-100 w-auto object-contain"
+          />
 
           <div className="max-w-md">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-400">

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import useFetch from "../../hooks/useFetch";
 
@@ -13,23 +14,29 @@ function Products() {
 
   const productsPerPage = 16;
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const sortBy = searchParams.get("sortBy") || "";
+  const order = searchParams.get("order") || "asc";
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const debouncedValue = useDebounce(searchQuery);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [debouncedValue]);
+  }, [debouncedValue, sortBy, order]);
 
   const skip = (currentPage - 1) * productsPerPage;
 
   const search = debouncedValue.trim();
+  const sortParams = sortBy ? `&sortBy=${sortBy}&order=${order}` : "";
 
   const url = search
     ? `https://dummyjson.com/products/search?q=${encodeURIComponent(
       search,
-    )}&limit=${productsPerPage}&skip=${skip}&select=id,title,price,thumbnail,rating`
-    : `https://dummyjson.com/products?limit=${productsPerPage}&skip=${skip}&select=id,title,price,thumbnail,rating`;
+    )}&limit=${productsPerPage}&skip=${skip}&select=id,title,price,thumbnail,rating${sortParams}`
+    : `https://dummyjson.com/products?limit=${productsPerPage}&skip=${skip}&select=id,title,price,thumbnail,rating${sortParams}`;
 
   const { data, loading, error } = useFetch(url);
 
@@ -102,6 +109,35 @@ function Products() {
         />
       </div>
 
+      {/* Sort */}
+      <div className="mx-auto flex w-full max-w-9xl justify-center px-5 pt-3 sm:px-8 lg:px-10">
+        <div className="flex w-full max-w-280 justify-end">
+          <select
+            value={sortBy ? `${sortBy}-${order}` : ""}
+            onChange={(e) => {
+              const value = e.target.value;
+              const next = new URLSearchParams(searchParams);
+              if (!value) {
+                next.delete("sortBy");
+                next.delete("order");
+              } else {
+                const [newSortBy, newOrder] = value.split("-");
+                next.set("sortBy", newSortBy);
+                next.set("order", newOrder);
+              }
+              setSearchParams(next);
+            }}
+            className="h-10 cursor-pointer border border-zinc-300 bg-white px-3 text-sm text-zinc-950 outline-none transition focus:border-zinc-950 focus:ring-1 focus:ring-zinc-950"
+          >
+            <option value="">Sort by: Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="title-asc">Title: A to Z</option>
+            <option value="title-desc">Title: Z to A</option>
+          </select>
+        </div>
+      </div>
+
       <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
         {/* Header */}
         <div className="mb-8 flex items-end justify-between border-b border-zinc-200 pb-6">
@@ -172,8 +208,8 @@ function Products() {
                       key={page}
                       onClick={() => handlePageChange(page)}
                       className={`flex h-9 min-w-9 items-center justify-center px-2 text-sm font-medium transition ${currentPage === page
-                          ? "bg-zinc-950 text-white"
-                          : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-950"
+                        ? "bg-zinc-950 text-white"
+                        : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-950"
                         }`}
                     >
                       {page}

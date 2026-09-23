@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 import useFetch from "../hooks/useFetch";
 
@@ -15,12 +15,19 @@ import useDebounce from "../hooks/useDebounce";
 function Categories() {
   const { category_name } = useParams();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const sortBy = searchParams.get("sortBy") || "";
+  const order = searchParams.get("order") || "asc";
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const debouncedValue = useDebounce(searchQuery);
 
+  const sortParams = sortBy ? `?sortBy=${sortBy}&order=${order}` : "";
+
   const { data, loading, error } = useFetch(
-    `https://dummyjson.com/products/category/${category_name}`,
+    `https://dummyjson.com/products/category/${category_name}${sortParams}`,
   );
 
   const search = debouncedValue.trim().toLowerCase();
@@ -46,6 +53,35 @@ function Categories() {
           id="category-search"
           className="h-11 w-full max-w-280 border border-zinc-300 bg-white px-3 text-sm text-zinc-950 outline-none transition placeholder:text-zinc-400 focus:border-zinc-950 focus:ring-1 focus:ring-zinc-950"
         />
+      </div>
+
+      {/* Sort */}
+      <div className="mx-auto flex w-full max-w-7xl justify-center px-5 pt-3 sm:px-8 lg:px-10">
+        <div className="flex w-full max-w-280 justify-end">
+          <select
+            value={sortBy ? `${sortBy}-${order}` : ""}
+            onChange={(e) => {
+              const value = e.target.value;
+              const next = new URLSearchParams(searchParams);
+              if (!value) {
+                next.delete("sortBy");
+                next.delete("order");
+              } else {
+                const [newSortBy, newOrder] = value.split("-");
+                next.set("sortBy", newSortBy);
+                next.set("order", newOrder);
+              }
+              setSearchParams(next);
+            }}
+            className="h-10 cursor-pointer border border-zinc-300 bg-white px-3 text-sm text-zinc-950 outline-none transition focus:border-zinc-950 focus:ring-1 focus:ring-zinc-950"
+          >
+            <option value="">Sort by: Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="title-asc">Title: A to Z</option>
+            <option value="title-desc">Title: Z to A</option>
+          </select>
+        </div>
       </div>
 
       <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
