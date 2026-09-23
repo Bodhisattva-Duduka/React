@@ -16,7 +16,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Checkout from "./components/Checkout";
 
 function App() {
-  const [userStatus, setUserStatus] = useState(true);
+  const [userStatus, setUserStatus] = useState(false);
   const [userDetails, setUserDetails] = useState({
     name: "",
     email: "",

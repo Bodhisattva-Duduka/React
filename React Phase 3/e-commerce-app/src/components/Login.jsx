@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../context/UserContext";
+
+import { CartContext } from "../context/CartContext";
 import logo from '../assets/logo.png'
 
 function Login() {
@@ -10,6 +12,10 @@ function Login() {
   const { userStatus, setUserStatus } = useContext(UserContext);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { cartItems, setCartItems, orders, setOrders } =
+    useContext(CartContext);
 
   const [showLogin, setShowLogin] = useState(false);
 
@@ -88,9 +94,22 @@ function Login() {
       return;
     }
 
+    // Login successful
     setUserStatus(true);
 
-    navigate("/");
+    // Check whether the user was sent here from checkout
+    if (location.state?.from === "/checkout") {
+      setOrders((prev) => [...prev, ...cartItems]);
+
+      setCartItems([]);
+
+      navigate("/checkout", { replace: true });
+
+      return;
+    }
+
+    // Normal login
+    navigate("/", { replace: true });
   }
 
   function switchToLogin() {
@@ -164,8 +183,8 @@ function Login() {
                   type="button"
                   onClick={switchToSignup}
                   className={`relative px-1 pb-4 text-sm font-medium transition-colors ${!showLogin
-                      ? "text-zinc-950"
-                      : "text-zinc-400 hover:text-zinc-700"
+                    ? "text-zinc-950"
+                    : "text-zinc-400 hover:text-zinc-700"
                     }`}
                 >
                   Sign up
@@ -179,8 +198,8 @@ function Login() {
                   type="button"
                   onClick={switchToLogin}
                   className={`relative ml-7 px-1 pb-4 text-sm font-medium transition-colors ${showLogin
-                      ? "text-zinc-950"
-                      : "text-zinc-400 hover:text-zinc-700"
+                    ? "text-zinc-950"
+                    : "text-zinc-400 hover:text-zinc-700"
                     }`}
                 >
                   Login
