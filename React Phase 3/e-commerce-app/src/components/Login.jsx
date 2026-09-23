@@ -11,7 +11,6 @@ function Login() {
 
   const navigate = useNavigate();
 
-  // Signup should appear first
   const [showLogin, setShowLogin] = useState(false);
 
   const [loginFormData, setLoginFormData] = useState({

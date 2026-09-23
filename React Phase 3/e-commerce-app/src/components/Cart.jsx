@@ -7,9 +7,13 @@ import { Minus, Plus, Trash2, ArrowLeft } from "lucide-react";
 import { CartContext } from "../context/CartContext";
 
 import Navbar from "./Navbar";
+import { UserContext } from "../context/UserContext";
 
 function Cart() {
   const { cartItems, setCartItems } = useContext(CartContext);
+  const { orders, setOrders } = useContext(CartContext);
+
+  const { userStatus } = useContext(UserContext);
 
   function totalPrice() {
     let total = 0;
@@ -22,6 +26,17 @@ function Cart() {
   }
 
   const navigate = useNavigate();
+
+  function handleCheckout(){
+    if(!userStatus){
+      navigate('/login', { state: { from: '/checkout' } })
+      return;
+    }
+
+    setOrders(prev => [...prev, ...cartItems]);
+    setCartItems([]);
+    navigate('/checkout')
+  }
 
   return (
     <div className="min-h-screen bg-white text-zinc-950">
@@ -215,7 +230,7 @@ function Cart() {
                 </div>
               </div>
 
-              <button onClick={() => (navigate('/checkout'))} className="mt-7 flex h-12 w-full items-center justify-center bg-zinc-950 px-6 text-sm font-medium text-white transition-colors hover:bg-zinc-800 active:scale-[0.99]">
+              <button onClick={handleCheckout} className="mt-7 flex h-12 w-full items-center justify-center bg-zinc-950 px-6 text-sm font-medium text-white transition-colors hover:bg-zinc-800 active:scale-[0.99]">
                 Proceed to Checkout
               </button>
 

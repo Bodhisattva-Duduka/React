@@ -9,6 +9,11 @@ import Home from "./components/Home";
 import Categories from "./components/Categories";
 import Cart from './components/Cart';
 import Login from "./components/Login";
+import AccountDetails from "./components/Account/AccountDetails";
+import OrderDetails from "./components/Account/OrderDetails";
+import Account from "./components/Account/Account";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Checkout from "./components/Checkout";
 
 function App() {
   const [userStatus, setUserStatus] = useState(false);
@@ -19,10 +24,11 @@ function App() {
     address: "",
   });
   const [cartItems, setCartItems] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   return (
     <UserContext.Provider value={{ userStatus, setUserStatus , userDetails, setUserDetails}}>
-      <CartContext.Provider value={{ cartItems, setCartItems , userDetails, setUserDetails}}>
+      <CartContext.Provider value={{ cartItems, setCartItems, orders, setOrders}}>
 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -38,6 +44,20 @@ function App() {
             <Route path="/cart" element={<Cart/>} />
 
             <Route path="/login" element={<Login/>} />
+
+            <Route element={<ProtectedRoute/>} >
+            
+              <Route path="/account" element={<Account/>}>
+              
+                <Route path="edit" element={<AccountDetails/>}/>
+
+                <Route path="orders" element={<OrderDetails/>}/>
+
+              </Route>
+            
+            </Route>
+
+            <Route path="/checkout" element={<Checkout/>}/>
 
           </Routes>
 
