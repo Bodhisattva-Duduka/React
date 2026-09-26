@@ -4,10 +4,10 @@ import data from './data/data.js'
 
 function App() {
   return (
-    <div className='bg-gray-100 min-h-screen'>
+    <div className='bg-gray-100 min-h-screen pb-16'>
       <Header />
-      <div className='mt-6 flex justify-center'>
-        <div className='w-4/5 flex gap-6'>      
+      <main className='mt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 justify-items-center'>      
           {data.map((item, index) => (
             <ProfileCard
               key={index}
@@ -20,7 +20,7 @@ function App() {
             />
           ))}
         </div>
-      </div>
+      </main>
     </div>
   )
 }
