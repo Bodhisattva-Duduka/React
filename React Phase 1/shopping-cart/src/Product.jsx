@@ -1,5 +1,5 @@
 
-function Product({ id, name, products, setProducts, price, image, quantity}) {
+function Product({ id, name, products, setProducts, price, image }) {
 
     function handleClick({ id, name, price, image}) {
         if(!products.some(item => item.id === id)){

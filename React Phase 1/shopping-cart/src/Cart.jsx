@@ -1,4 +1,4 @@
-import CartItem from './CartItem'
+import CartItem from './CartItem';
 
 function Cart({ products, setProducts, onCheckOut }) {
     function totalCost(products) {
@@ -21,7 +21,7 @@ function Cart({ products, setProducts, onCheckOut }) {
 
     return (
         <>
-            <div className="w-90 h-fit bg-white rounded-xl shadow-lg p-4 flex flex-col gap-4">
+            <div className="w-full max-w-90 sm:w-90 h-fit bg-white rounded-xl shadow-sm p-4 flex flex-col gap-4">
 
                 <div className="flex justify-between items-center">
                     <h2 className="text-lg font-semibold text-gray-800">
@@ -29,7 +29,7 @@ function Cart({ products, setProducts, onCheckOut }) {
                     </h2>
                     <div className="flex items-center gap-2">
                         <div className="bg-purple-600 p-2 rounded-md">
-                            <img className="w-4 h-4" src="../public/assets/shopping-cart.png" />
+                            <img className="w-4 h-4" src="./assets/shopping-cart.png" alt="Cart" />
                         </div>
                         <h2 className="text-gray-700 font-medium">{products.length}</h2>
                     </div>

@@ -11,15 +11,15 @@ function App() {
   return (
     <>
       <Header />
-      <div className="flex" >
+      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-6 px-4 pb-8">
         <ProductsPage products={products} setProducts={setProducts} />
-        <div>
+        <div className="w-full max-w-90 lg:w-auto flex flex-col items-center">
           <Cart products={products} setProducts={setProducts} onCheckOut={setCheckout}/>
           {checkout && (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 px-3 py-2 bg-purple-700 text-white rounded animate-[slideUp_0.3s_ease-out]">
-          Checked Out
-        </div>
-      )}
+            <div className="fixed bottom-4 left-1/2 -translate-x-1/2 px-3 py-2 bg-purple-700 text-white rounded animate-[slideUp_0.3s_ease-out] z-50">
+              Checked Out
+            </div>
+          )}
         </div>
       </div>
     </>
