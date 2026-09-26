@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 
-function Toast({ id, setToast }) {
+function Toast({ id, count, setToast }) {
   useEffect(() => {
-    let timer = setTimeout(() => {
-      setToast((prev) => prev.filter((item) => id !== item));
+    const timer = setTimeout(() => {
+      setToast((prev) => prev.filter((item) => item.id !== id));
     }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      <div className="flex bg-purple-700 w-full justify-center items-center h-20 rounded-2xl">
-        <h1 className="text-3xl ">Reminder</h1>
+      <div className="flex bg-purple-700 w-full justify-center items-center h-20 rounded-2xl px-4 text-white shadow-md">
+        <h1 className="text-2xl font-semibold">Reminder {count}</h1>
       </div>
     </>
   );

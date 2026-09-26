@@ -3,26 +3,29 @@ import Toast from "./Toast";
 
 function App() {
   const [toast, setToast] = useState([]);
+  const [count, setCount] = useState(0);
 
   function handleClick() {
-    setToast([...toast, Date.now()]);
+    const nextCount = count + 1;
+    setCount(nextCount);
+    setToast((prev) => [...prev, { id: `${Date.now()}-${nextCount}`, count: nextCount }]);
   }
 
   return (
     <>
-      <div className="flex justify-around items-center">
+      <div className="flex justify-around items-center min-h-screen">
         <div className="flex flex-col w-full justify-center items-center">
           <button
             onClick={handleClick}
-            className=" bg-blue-400 p-4 rounded-2xl text-4xl hover:bg-blue-700 border-none"
+            className=" bg-blue-400 p-4 rounded-2xl text-4xl hover:bg-blue-700 cursor-pointer border-none text-white font-medium transition-colors"
           >
             Toast
           </button>
         </div>
         <div className="flex">
-          <div className="flex flex-col mr-2 mt-2 w-44 h-200 justify-end gap-3 ">
+          <div className="flex flex-col mr-4 mt-2 w-52 justify-end gap-3">
             {toast.map((item) => (
-              <Toast key={item} id={item} setToast={setToast}/>
+              <Toast key={item.id} id={item.id} count={item.count} setToast={setToast}/>
             ))}
           </div>
         </div>
