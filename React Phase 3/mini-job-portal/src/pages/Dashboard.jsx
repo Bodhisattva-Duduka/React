@@ -17,8 +17,8 @@ function Dashboard() {
     <div className="min-h-screen flex flex-col">
       <Navbar />
 
-      <div className="flex-1 flex justify-center items-center">
-        <div className="flex gap-6">
+      <div className="flex-1 flex justify-center items-center p-4">
+        <div className="flex flex-col sm:flex-row gap-6">
           <button onClick={companiesButton} className="w-48 h-28 text-2xl bg-violet-300 hover:bg-violet-400 rounded-2xl flex justify-center items-center">
             Companies
           </button>

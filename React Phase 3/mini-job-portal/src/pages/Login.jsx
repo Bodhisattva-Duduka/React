@@ -8,8 +8,8 @@ function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-80 p-6 bg-white rounded-lg shadow">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div className="w-full max-w-xs sm:w-80 p-6 bg-white rounded-lg shadow">
         <h2 className="mb-2 text-2xl">Login</h2>
         <input
           type="text"
