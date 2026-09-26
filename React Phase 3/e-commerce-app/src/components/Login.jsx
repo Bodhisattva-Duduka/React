@@ -98,18 +98,19 @@ function Login() {
     // Login successful
     setUserStatus(true);
 
-    // Check whether the user was sent here from checkout
-    if (location.state?.from === "/checkout") {
-      setOrders((prev) => [...prev, ...cartItems]);
+    if (location.state?.from?.startsWith("/checkout")) {
+      if (location.state?.buyNowItem) {
+        setOrders((prev) => [...prev, location.state.buyNowItem]);
+      } else {
+        setOrders((prev) => [...prev, ...cartItems]);
+        setCartItems([]);
+      }
 
-      setCartItems([]);
-
-      navigate("/checkout", { replace: true });
+      navigate(location.state.from, { replace: true });
 
       return;
     }
 
-    // Normal login
     navigate("/", { replace: true });
   }
 
@@ -136,14 +137,14 @@ function Login() {
             <img
               src={logo}
               alt="Cove"
-              className="h-30 w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
           </Link>
 
           <img
             src={banner}
             alt="banner"
-            className="h-100 w-auto object-contain"
+            className="max-h-80 w-auto object-contain my-auto"
           />
 
           <div className="max-w-md">
@@ -167,7 +168,7 @@ function Login() {
         </div>
 
         {/* Right form section */}
-        <div className="flex items-center justify-center px-5 py-10 sm:px-8">
+        <div className="flex items-center justify-center px-4 py-8 sm:px-8 sm:py-12">
           <div className="w-full max-w-md">
             {/* Mobile branding */}
             <Link

@@ -15,8 +15,8 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
-        <div className="flex items-center gap-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-8 lg:px-10">
+        <div className="flex items-center gap-3 sm:gap-8">
           <Link
             to="/"
             className="flex items-center shrink-0"
@@ -25,21 +25,21 @@ function Navbar() {
             <img
               src={logo}
               alt="Cove"
-              className="h-20 w-auto object-contain"
+              className="h-10 sm:h-12 w-auto object-contain"
             />
           </Link>
 
-          <nav className="flex items-center gap-7">
+          <nav className="flex items-center gap-4 sm:gap-7">
             <Link
               to="/"
-              className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
+              className="text-xs sm:text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
             >
               Home
             </Link>
 
             <Link
               to="/products"
-              className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
+              className="text-xs sm:text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
             >
               All Products
             </Link>
@@ -49,7 +49,7 @@ function Navbar() {
         <div className="flex items-center gap-1">
           <Link
             to="/cart"
-            className="group flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
+            className="group flex h-9 sm:h-10 items-center gap-1.5 sm:gap-2 rounded-md px-2 sm:px-3 text-xs sm:text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
           >
             <span className="relative flex items-center">
               <ShoppingCart
@@ -70,7 +70,7 @@ function Navbar() {
 
           <Link
             to={userStatus ? "/account" : "/login"}
-            className="group flex h-10 items-center gap-2 rounded-md px-3 text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
+            className="group flex h-9 sm:h-10 items-center gap-1.5 sm:gap-2 rounded-md px-2 sm:px-3 text-xs sm:text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
           >
             <UserRound
               size={18}
@@ -78,7 +78,7 @@ function Navbar() {
               className="transition-transform duration-200 group-hover:-translate-y-px"
             />
 
-            <span className="hidden sm:inline">
+            <span className="hidden sm:inline max-w-[100px] md:max-w-[140px] truncate">
               {userStatus ? userDetails.name : "Login"}
             </span>
           </Link>

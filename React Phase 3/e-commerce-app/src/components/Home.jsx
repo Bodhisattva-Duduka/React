@@ -185,14 +185,14 @@ function Home() {
         </section>
 
         <section className="mt-12 border-t border-zinc-200 pt-6">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-zinc-400">
               That's just a small part of the collection.
             </p>
 
             <Link
               to="/products"
-              className="group flex shrink-0 items-center gap-2 text-sm font-medium text-zinc-950"
+              className="group flex w-fit shrink-0 items-center gap-2 text-sm font-medium text-zinc-950"
             >
               Browse everything
               <ArrowUpRight

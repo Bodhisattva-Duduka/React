@@ -72,26 +72,26 @@ function OrderDetails() {
           orders.map((item) => (
             <div
               key={item.id}
-              className="flex gap-5 border-b border-zinc-200 py-6 last:border-b-0"
+              className="flex gap-3 sm:gap-5 border-b border-zinc-200 py-4 sm:py-6 last:border-b-0"
             >
               {/* Image */}
-              <div className="flex h-24 w-24 shrink-0 items-center justify-center border border-zinc-200 bg-zinc-50 sm:h-28 sm:w-28">
+              <div className="flex h-20 w-20 sm:h-28 sm:w-28 shrink-0 items-center justify-center border border-zinc-200 bg-zinc-50">
                 <img
                   src={item.thumbnail}
                   alt={item.title}
-                  className="h-full w-full object-contain p-3"
+                  className="h-full w-full object-contain p-2 sm:p-3"
                 />
               </div>
 
               {/* Details */}
-              <div className="flex min-w-0 flex-1 flex-col justify-between gap-4">
-                <div className="flex items-start justify-between gap-4">
+              <div className="flex min-w-0 flex-1 flex-col justify-between gap-3 sm:gap-4">
+                <div className="flex items-start justify-between gap-2 sm:gap-4">
                   <div className="min-w-0">
                     <h3 className="truncate text-sm font-medium text-zinc-950 sm:text-base">
                       {item.title}
                     </h3>
 
-                    <p className="mt-1 text-sm text-zinc-400">
+                    <p className="mt-0.5 sm:mt-1 text-xs sm:text-sm text-zinc-400">
                       ${item.price} each
                     </p>
                   </div>
@@ -101,7 +101,7 @@ function OrderDetails() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-4 text-xs text-zinc-400">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-zinc-400">
                   <span>
                     Quantity:{" "}
                     <span className="font-medium text-zinc-700">

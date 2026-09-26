@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 
 import { CartContext } from "../../context/CartContext";
+import { UserContext } from "../../context/UserContext";
 
 import { useNavigate, useParams, Link } from "react-router-dom";
 
 import useFetch from "../../hooks/useFetch";
 
 function ProductItem() {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { userStatus } = useContext(UserContext);
+  const { cartItems, setCartItems, setOrders } = useContext(CartContext);
 
   const { id } = useParams();
 
@@ -21,6 +23,31 @@ function ProductItem() {
   const [showToast, setShowToast] = useState(false);
 
   const itemExists = cartItems.some((item) => item.id === id);
+
+  function handleBuyNow() {
+    if (!data) return;
+
+    const buyNowItem = {
+      id,
+      title: data.title,
+      price: data.price,
+      thumbnail: data.thumbnail,
+      quantity: 1,
+    };
+
+    if (!userStatus) {
+      navigate("/login", {
+        state: {
+          from: `/checkout/${id}`,
+          buyNowItem,
+        },
+      });
+      return;
+    }
+
+    setOrders((prev) => [...prev, buyNowItem]);
+    navigate(`/checkout/${id}`);
+  }
 
   if (loading) {
     return (
@@ -104,13 +131,13 @@ function ProductItem() {
               </div>
 
               <div className="relative min-w-0 flex-1 overflow-hidden border border-zinc-200 bg-zinc-50">
-                <div className="flex aspect-square items-center justify-center p-8 sm:p-12">
+                <div className="flex aspect-square items-center justify-center p-4 sm:p-8 md:p-12">
                   {images.map((src, index) => (
                     <img
                       key={src}
                       src={src}
                       alt={`${data.title} ${index + 1}`}
-                      className={`absolute inset-0 h-full w-full object-contain p-10 transition-all duration-300 sm:p-14 ${
+                      className={`absolute inset-0 h-full w-full object-contain p-4 transition-all duration-300 sm:p-10 ${
                         imageNum === index
                           ? "scale-100 opacity-100"
                           : "pointer-events-none scale-[0.97] opacity-0"
@@ -150,7 +177,7 @@ function ProductItem() {
               </div>
             </div>
 
-            <div className="mt-4 flex gap-2 overflow-x-auto pb-1 sm:hidden">
+            <div className="mt-4 flex gap-2 overflow-x-auto pb-1 sm:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {images.map((src, index) => (
                 <button
                   key={src}
@@ -218,7 +245,7 @@ function ProductItem() {
 
             <div className="mt-8 space-y-3">
               <button
-                onClick={() => navigate(`/checkout/${id}`)}
+                onClick={handleBuyNow}
                 className="flex h-12 w-full items-center justify-center bg-zinc-950 px-6 text-sm font-medium text-white transition hover:bg-zinc-800 active:scale-[0.99]"
               >
                 Buy Now
@@ -332,13 +359,13 @@ function ProductItem() {
         </section>
       </div>
       <div
-        className={`fixed left-1/2 top-16 z-40 -translate-x-1/2 transition-all duration-300 ease-out ${
+        className={`fixed left-1/2 top-16 z-40 -translate-x-1/2 transition-all duration-300 ease-out px-4 w-full max-w-sm flex justify-center ${
           showToast
             ? "translate-y-0 scale-100 opacity-100"
             : "-translate-y-6 scale-95 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex min-w-[280px] items-center gap-3 border border-zinc-200 bg-white px-4 py-3 shadow-[0_10px_35px_rgba(0,0,0,0.10)]">
+        <div className="flex w-full items-center gap-3 border border-zinc-200 bg-white px-4 py-3 shadow-[0_10px_35px_rgba(0,0,0,0.10)]">
           <div className="flex h-7 w-7 shrink-0 items-center justify-center bg-zinc-950 text-sm font-medium text-white">
             ✓
           </div>
