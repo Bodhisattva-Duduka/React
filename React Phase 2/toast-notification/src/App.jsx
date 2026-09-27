@@ -17,7 +17,7 @@ function App() {
         <div className="flex flex-col w-full justify-center items-center">
           <button
             onClick={handleClick}
-            className=" bg-blue-400 p-4 rounded-2xl text-4xl hover:bg-blue-700 cursor-pointer border-none text-white font-medium transition-colors"
+            className="bg-blue-800 active:bg-red-700 text-white text-2xl px-6 py-3 rounded"
           >
             Toast
           </button>
